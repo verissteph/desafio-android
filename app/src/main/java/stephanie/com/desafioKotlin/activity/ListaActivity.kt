@@ -22,12 +22,14 @@ class ListaActivity : AppCompatActivity() {
         setContentView(R.layout.activity_lista)
       //  getData()
             val recycler_repositorio = findViewById<RecyclerView>(R.id.recycler_repositorio)
-            recycler_repositorio?.adapter = adapter
             recycler_repositorio?.layoutManager = LinearLayoutManager(this)
+            recycler_repositorio?.adapter = adapter
             recycler_repositorio.setHasFixedSize(true)
 
             val intencao = Intent(this, PullRequestsActivity::class.java)
             startActivity(intencao)
+
+
 
     }
 

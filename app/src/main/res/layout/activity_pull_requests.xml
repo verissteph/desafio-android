@@ -1,35 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.google.android.material.circularreveal.CircularRevealLinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<com.google.android.material.circularreveal.CircularRevealRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    tools:context=".activity.ListaActivity">
 
-    <com.google.android.material.appbar.MaterialToolbar
+    <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolBar"
+        style="@style/Widget.MaterialComponents.Toolbar.Primary"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#0C0C0C"
-        app:navigationIcon="@drawable/ic_baseline_arrow_back_24"
-        app:subtitleTextColor="#FFFFFF"
-        app:title="GitHub JavaPop"
-        app:titleTextColor="#FFFFFF" />
+        app:title="Nome Repositório" />
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@+id/toolBar"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/toolBar"
         android:orientation="vertical">
-        <TextView
-            android:id="@+id/nome_pull_request"
+<!--        <TextView-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="oieeeee"-->
+<!--            android:textSize="32sp"-->
+<!--            android:background="@color/black"-->
+<!--            android:textColor="@color/white"-->
+<!--            android:padding="16dp"/>-->
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_pull_request"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="TELA DE PULL REQUEST"
-            android:textAllCaps="true" />
-
-
+            android:padding="4dp"
+            tools:listitem="@layout/item_pull_request" />
     </LinearLayout>
-
-
-
-</com.google.android.material.circularreveal.CircularRevealLinearLayout>
+</com.google.android.material.circularreveal.CircularRevealRelativeLayout>

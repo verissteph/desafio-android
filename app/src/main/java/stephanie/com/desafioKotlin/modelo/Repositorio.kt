@@ -29,6 +29,10 @@ data class Repositorio(
     @SerializedName("owner")
     private val owner: Owner,
 
+    @SerializedName("stargazers_count")
+    private val stargazers_count: Int,
+
+
     ) {}
 interface Endpoint {
     // criando um endpoint que irá utilizar o

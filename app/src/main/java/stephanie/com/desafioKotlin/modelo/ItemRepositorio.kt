@@ -1,7 +1,5 @@
 package stephanie.com.desafioKotlin.modelo
 
-import android.view.View
-import androidx.recyclerview.widget.RecyclerView
 
 data class ItemRepositorio(val nome_repositorio:String,
                            val descricao_repositorio:String,
