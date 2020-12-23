@@ -11,10 +11,10 @@ import stephanie.com.desafioKotlin.modelo.ItemRepositorio
 
 
 
-class ListaActivity : AppCompatActivity() {
+class ListaActivity : AppCompatActivity(),RepositorioAdapter.OnItemClickListener {
 
     private val itemRepositorio = geraLista(150)
-    private val adapter = RepositorioAdapter(itemRepositorio)
+    private val adapter = RepositorioAdapter(itemRepositorio,this)
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -26,8 +26,7 @@ class ListaActivity : AppCompatActivity() {
             recycler_repositorio?.adapter = adapter
             recycler_repositorio.setHasFixedSize(true)
 
-            val intencao = Intent(this, PullRequestsActivity::class.java)
-            startActivity(intencao)
+
 
 
 
@@ -52,6 +51,13 @@ class ListaActivity : AppCompatActivity() {
             lista+=item
         }
        return lista
+    }
+
+    override fun onItemClick(position: Int) {
+        val intencao = Intent(this, PullRequestsActivity::class.java)
+        startActivity(intencao)
+
+
     }
 
 //
