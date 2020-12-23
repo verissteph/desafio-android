@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:orientation="vertical"
+        android:padding="8dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+
+            <TextView
+                android:layout_marginTop="16dp"
+                android:layout_marginStart="16dp"
+                android:id="@+id/nome_repositorio"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="NOME REPOSITORIO" />
+
+            <TextView
+                android:id="@+id/descricao_repositorio"
+                android:layout_width="240dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/nome_repositorio"
+                android:layout_marginTop="1dp"
+                android:layout_marginStart="16dp"
+                android:maxLines="3"
+                android:text="Descricao repositorio Mussum Ipsum,
+                 cacilds vidis litro abertis. In elementis mé pra quem é
+                 amistosis quis leo. Leite de capivaris, leite de mula
+                 manquis sem cabeça. Delegadis gente finis, bibendum egestas
+                augue arcu ut est. Quem manda na minha terra sou euzis!" />
+
+            <ImageView
+                android:id="@+id/fork_repositorio"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_below="@+id/descricao_repositorio"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                app:srcCompat="@drawable/fork__1_" />
+
+            <TextView
+                android:id="@+id/qde_forks_repositorio"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/descricao_repositorio"
+                android:layout_marginStart="48dp"
+                android:layout_marginTop="16dp"
+                android:text="600" />
+
+            <ImageView
+                android:id="@+id/stars_repositorio"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/descricao_repositorio"
+                android:layout_marginTop="16dp"
+                android:layout_marginStart="80dp"
+                app:srcCompat="@android:drawable/star_off" />
+
+            <TextView
+                android:id="@+id/qde_stars_repositorio"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/descricao_repositorio"
+                android:layout_marginStart="0dp"
+                android:layout_marginTop="16dp"
+                android:layout_toEndOf="@+id/stars_repositorio"
+                android:text="200" />
+
+            <ImageView
+                android:id="@+id/foto_repositorio"
+                android:layout_width="88dp"
+                android:layout_height="88dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginStart="30dp"
+                android:layout_toEndOf="@+id/descricao_repositorio"
+                android:src="@drawable/ic_usuario"
+                />
+
+            <TextView
+                android:id="@+id/username_repositorio"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAlignment="center"
+                android:layout_below="@+id/foto_repositorio"
+                android:layout_marginStart="290dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="32dp"
+                android:text="username" />
+
+            <TextView
+                android:id="@+id/fullname_repositorio"
+                android:layout_width="115dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/username_repositorio"
+                android:layout_marginStart="280dp"
+                android:layout_marginTop="5dp"
+                android:text="Nome completo" />
+
+
+        </RelativeLayout>
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+</androidx.cardview.widget.CardView>

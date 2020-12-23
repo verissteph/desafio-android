@@ -1,4 +1,4 @@
-package stephanie.com.desafioKotlin
+package stephanie.com.desafioKotlin.activity
 
 import android.os.Bundle
 import android.view.MenuItem
@@ -12,8 +12,9 @@ class PullRequestsActivity: AppCompatActivity() {
         super.onCreate(savedInstanceState)
         val binding = ActivityPullRequestsBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
+        setSupportActionBar(binding.toolBar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
+
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
