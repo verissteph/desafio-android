@@ -2,13 +2,21 @@ package stephanie.com.desafioKotlin.activity
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 import stephanie.com.desafioKotlin.R
 import stephanie.com.desafioKotlin.adapter.RepositorioAdapter
+import stephanie.com.desafioKotlin.modelo.Endpoint
 import stephanie.com.desafioKotlin.modelo.ItemRepositorio
-
+import stephanie.com.desafioKotlin.modelo.Repositorio
+import stephanie.com.desafioKotlin.webService.NetworkingUtils
+import kotlin.math.log
 
 
 class ListaActivity : AppCompatActivity(),RepositorioAdapter.OnItemClickListener {
@@ -20,7 +28,7 @@ class ListaActivity : AppCompatActivity(),RepositorioAdapter.OnItemClickListener
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_lista)
-      //  getData()
+        getData()
             val recycler_repositorio = findViewById<RecyclerView>(R.id.recycler_repositorio)
             recycler_repositorio?.layoutManager = LinearLayoutManager(this)
             recycler_repositorio?.adapter = adapter
@@ -60,26 +68,32 @@ class ListaActivity : AppCompatActivity(),RepositorioAdapter.OnItemClickListener
 
     }
 
-//
-//        private fun getData() {
-//            val retrofitClient =
-//                NetworkingUtils.getRetrofitInstance("https://api.github.com/search/repositories?q=language:Java&sort=stars&page=1")
-//            val endpoint = retrofitClient.create(Endpoint::class.java)
-//            val callback = endpoint.getRepo()
-//            callback.enqueue(object : Callback<List<Repositorio>> {
-//                override fun onResponse(
-//                    call: Call<List<Repositorio>>,
-//                    response: Response<List<Repositorio>>
-//                ) {
-//                    response.body()?.forEach {
-//                        textView.text = textView.text.toString()
-//                    }
-//                }
-//
-//                override fun onFailure(call: Call<List<Repositorio>>, t: Throwable) {
-//                    Toast.makeText(baseContext, t.message, Toast.LENGTH_LONG).show()
-//                }
-//
-//            })
-//        }
+
+        private fun getData() {
+            val URL_BASE = "https://api.github.com/"
+            val retrofitClient =
+                NetworkingUtils.getRetrofitInstance(URL_BASE)
+            val endpoint = retrofitClient.create(Endpoint::class.java)
+            val callback = endpoint.getRepo()
+           callback.enqueue(object : Callback<List<Repositorio>>{
+               override fun onResponse(
+                   call: Call<List<Repositorio>>,
+                   response: Response<List<Repositorio>>
+               ) {
+                if(response.isSuccessful){
+                   Log.e("resposta","${response.body()}")
+                    //AQUI ESTA O B.O
+
+                } else{
+                    response.errorBody()
+                }
+               }
+
+               override fun onFailure(call: Call<List<Repositorio>>, t: Throwable) {
+                Toast.makeText(baseContext,t.message,Toast.LENGTH_LONG).show()
+               }
+
+           })
+
+        }
 }

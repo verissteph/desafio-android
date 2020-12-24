@@ -40,6 +40,6 @@ interface Endpoint {
     // retrofit do tipo Call que será nosso
     // container de uma lista de objetos do tipo Repositorio
 
-    @GET("/repositorios")
+    @GET("search/repositories?q=language:Java&sort=stars&page=1")
     fun getRepo(): Call<List<Repositorio>>
 }
