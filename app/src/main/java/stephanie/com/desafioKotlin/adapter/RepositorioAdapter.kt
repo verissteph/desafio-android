@@ -36,8 +36,8 @@ class RepositorioAdapter(
 
         holder.nomeRepositorio.text = nomeLista.nome_repositorio
         holder.descricaoRepositorio.text = nomeLista.descricao_repositorio
-        holder.qdForksFepositorio.toString()
-        holder.qdeStarsRepositorios.toString()
+        holder.qdForksFepositorio.text = nomeLista.qde_forks_repositorio
+        holder.qdeStarsRepositorios.text = nomeLista.qde_stars_repositorios
        // holder.fotoRepositorio.setImageResource()
         holder.usernameRepositorio.text = nomeLista.username_repositorio
         holder.fullnameRepositorio.text = nomeLista.fullname_repositorio
