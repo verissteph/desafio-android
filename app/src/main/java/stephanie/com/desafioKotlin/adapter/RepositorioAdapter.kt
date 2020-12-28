@@ -19,7 +19,7 @@ class RepositorioAdapter(
 
     private var listaRepositorio: List<ItemRepositorio> = emptyList()
 
-    fun updateList(items: List<ItemRepositorio>){
+    fun updateList(items: List<ItemRepositorio>) {
         listaRepositorio = items
         notifyDataSetChanged()
     }
@@ -38,7 +38,6 @@ class RepositorioAdapter(
         holder.descricaoRepositorio.text = nomeLista.descricao_repositorio
         holder.qdForksFepositorio.text = nomeLista.qde_forks_repositorio
         holder.qdeStarsRepositorios.text = nomeLista.qde_stars_repositorios
-       // holder.fotoRepositorio.setImageResource()
         holder.usernameRepositorio.text = nomeLista.username_repositorio
         holder.fullnameRepositorio.text = nomeLista.fullname_repositorio
 
@@ -61,13 +60,15 @@ class RepositorioAdapter(
         init {
             itemView.setOnClickListener(this)
         }
+
         override fun onClick(v: View?) {
             val position: Int = adapterPosition
             if (position != RecyclerView.NO_POSITION)
                 listener.onItemClick(listaRepositorio[position])
         }
     }
-    interface OnItemClickListener{
+
+    interface OnItemClickListener {
         fun onItemClick(item: ItemRepositorio)
     }
 }

@@ -8,12 +8,20 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import stephanie.com.desafioKotlin.R
 import stephanie.com.desafioKotlin.modelo.ItemPullRequest
+import stephanie.com.desafioKotlin.modelo.ItemRepositorio
 
-class PullRequestAdapter(private val listaPullRequest:List<ItemPullRequest>):RecyclerView.Adapter<PullRequestAdapter.ItemViewHolder>(){
+class PullRequestAdapter(private var listaPullRequest:List<ItemPullRequest> = emptyList()):RecyclerView.Adapter<PullRequestAdapter.ItemViewHolder>(){
+
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemViewHolder {
         val itemView = LayoutInflater.from(parent.context).inflate(R.layout.item_pull_request,parent,false)
         return ItemViewHolder(itemView)
+    }
+
+
+    fun updateList(items: List<ItemPullRequest>) {
+        listaPullRequest = items
+        notifyDataSetChanged()
     }
 
     override fun onBindViewHolder(holder: ItemViewHolder, position: Int) {

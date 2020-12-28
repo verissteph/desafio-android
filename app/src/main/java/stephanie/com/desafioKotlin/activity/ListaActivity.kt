@@ -41,34 +41,12 @@ class ListaActivity : AppCompatActivity(), RepositorioAdapter.OnItemClickListene
         }
     }
 
-//    private fun geraLista(size: Int): List<ItemRepositorio> {
-//        val lista = ArrayList<ItemRepositorio>()
-//        for (i in 0..size) {
-//            val drawable = when (i % 3) {
-//                0 -> R.drawable.ic_usuario
-//                else -> R.drawable.ic_usuario
-//            }
-//            val item = ItemRepositorio(
-//                "Netflix $i",
-//                "a netflix é muito boa para acalmar",
-//                "300",
-//                "20",
-//                "10",
-//                "3",
-//                drawable,
-//                "verissteph",
-//                "verissteph/netflix"
-//            )
-//            lista += item
-//        }
-//        return lista
-//    }
 
     override fun onItemClick(item: ItemRepositorio) {
         val intencao = Intent(this, PullRequestsActivity::class.java)
+        intencao.putExtra("criador",item.owner_login) //owner.login ->criador
+       intencao.putExtra("repositorio",item.nome_repositorio) //repositorio.name ->repositorio
         startActivity(intencao)
-
-
     }
 
     private var job: Job? = null

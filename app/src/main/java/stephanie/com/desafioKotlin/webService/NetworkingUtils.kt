@@ -22,30 +22,6 @@ class NetworkingUtils {
                 .build()
             return retrofit
 
-//          val  requestRepositorios  =  retrofit.create(Endpoint::class.java).getRepo()
-//           requestRepositorios.enqueue(object : Callback<List<Repositorio>>{
-//               override fun onResponse(
-//                   call: Call<List<Repositorio>>,
-//                   response: Response<List<Repositorio>>
-//               ) {
-//                   if(!response.isSuccessful){
-//                       Log.i("erro","${response.code()}")
-//                   }else{
-//                        val listaRepo = response.body(); //ta me devolvendo o corpo vazio!!!
-//                       for (item: Repositorio in listaRepo){
-//                           Log.i("erro","${item.copy()}")
-//
-//                       }
-//
-//                   }
-//               }
-//
-//               override fun onFailure(call: Call<List<Repositorio>>, t: Throwable) {
-//                Log.e("erro","algo de errado nao esta certo, meu amor: ${t.message}")
-//               }
-//
-//           })
-//                return retrofit
         }
     }
 }
