@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.squareup.picasso.Picasso
 import stephanie.com.desafioKotlin.R
 import stephanie.com.desafioKotlin.modelo.ItemPullRequest
 import stephanie.com.desafioKotlin.modelo.ItemRepositorio
@@ -28,10 +29,12 @@ class PullRequestAdapter(private var listaPullRequest:List<ItemPullRequest> = em
         val nomeLista = listaPullRequest[position]
         holder.pullRequestTitulo.text = nomeLista.pull_request_titulo
         holder.pullRequestDescricao.text = nomeLista.pull_request_descricao
-        holder.fotoUsuarioPullRequest.toString()
+//        holder.fotoUsuarioPullRequest.toString()
         holder.usernamePullRequest.text = nomeLista.username_pull_request
         holder.pullRequestNome.text = nomeLista.pull_request_nome
         holder.pullRequestDate.text = nomeLista.pull_request_date
+        Picasso.get().load(nomeLista.foto_usuario_pull_request).into(holder.fotoUsuarioPullRequest)
+
 
     }
 

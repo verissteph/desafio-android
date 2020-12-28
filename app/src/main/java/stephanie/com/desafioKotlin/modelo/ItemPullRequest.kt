@@ -10,6 +10,7 @@ data class ItemPullRequest(
         val username_pull_request:String,
         val pull_request_nome:String,
         val pull_request_date:String,
+        val pull_request_url:String,
 )
 interface EndpointPull {
 

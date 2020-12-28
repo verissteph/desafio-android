@@ -1,5 +1,7 @@
 package stephanie.com.desafioKotlin.activity
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import android.view.MenuItem
@@ -10,11 +12,7 @@ import androidx.recyclerview.widget.RecyclerView
 import kotlinx.coroutines.*
 import stephanie.com.desafioKotlin.R
 import stephanie.com.desafioKotlin.adapter.PullRequestAdapter
-import stephanie.com.desafioKotlin.adapter.RepositorioAdapter
-import stephanie.com.desafioKotlin.modelo.Endpoint
-import stephanie.com.desafioKotlin.modelo.EndpointPull
-import stephanie.com.desafioKotlin.modelo.ItemPullRequest
-import stephanie.com.desafioKotlin.modelo.transfomeEmListaItemRepositorio
+import stephanie.com.desafioKotlin.modelo.*
 import stephanie.com.desafioKotlin.webService.NetworkingUtils
 
 
@@ -50,9 +48,12 @@ class PullRequestsActivity: AppCompatActivity() {
 
 
 
+
     private var job: Job? = null
     private fun getData(callback: (List<ItemPullRequest>?) -> Unit) {
-        val URL_BASE = "https://api.github.com/${intent.extras?.getString("criador")}/${intent.extras?.getString("repositorio")}/"
+        val URL_BASE = "https://api.github.com/${intent.extras?.getString("criador")}/${intent.extras?.getString(
+            "repositorio"
+        )}/"
         val retrofitClient =
             NetworkingUtils.getRetrofitInstance(URL_BASE)
         val repoService = retrofitClient.create(EndpointPull::class.java)
@@ -78,6 +79,13 @@ class PullRequestsActivity: AppCompatActivity() {
                 }
             }
         }
+    }
+
+    fun onItemClick(item: ItemPullRequest) {
+        val url = item.pull_request_url
+        val intencao = Intent(Intent.ACTION_VIEW)
+        intencao.data = Uri.parse(url)
+        startActivity(intencao)
     }
 
 //    private fun geraLista(size: Int):List<ItemPullRequest>{
