@@ -2,35 +2,37 @@ package stephanie.com.desafioKotlin.modelo
 
 import com.google.gson.annotations.SerializedName
 import retrofit2.Call
+import retrofit2.Response
 import retrofit2.http.GET
+
+data class RepositorioResponse(
+    val items: List<Repositorio>
+)
 
 data class Repositorio(
     //@SerializedName é usado para facilitar
     // a conversao e serializaçao
 
-    @SerializedName("id")
-    private val id: Int,
 
-    @SerializedName("name")
-    private val name: String,
+    internal val id: Int,
 
-    @SerializedName("description")
-    private val description: String,
 
-    @SerializedName("username")
-    private val username: String,
+    internal val name: String,
 
-    @SerializedName("full_name")
-    private val full_name: String,
 
-    @SerializedName("forks_count")
-    private val forks_count: Int,
+    internal val description: String,
 
-    @SerializedName("owner")
-    private val owner: Owner,
 
-    @SerializedName("stargazers_count")
-    private val stargazers_count: Int,
+    internal val username: String?,
+
+    internal val full_name: String,
+
+    internal val forks_count: Int,
+
+
+    internal val owner: Owner,
+
+    internal val stargazers_count: Int,
 
 
     ) {}
@@ -41,5 +43,5 @@ interface Endpoint {
     // container de uma lista de objetos do tipo Repositorio
 
     @GET("search/repositories?q=language:Java&sort=stars&page=1")
-    fun getRepo(): Call<List<Repositorio>>
+    suspend fun getRepo(): Response<RepositorioResponse>
 }

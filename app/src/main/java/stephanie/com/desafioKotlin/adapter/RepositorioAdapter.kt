@@ -7,15 +7,22 @@ import android.widget.AdapterView
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.squareup.picasso.Picasso
 import stephanie.com.desafioKotlin.R
 import stephanie.com.desafioKotlin.modelo.ItemRepositorio
 
 class RepositorioAdapter(
-    private val listaRepositorio: List<ItemRepositorio>,
-    private val listener: OnItemClickListener
+    val listener: OnItemClickListener
 ) : RecyclerView.Adapter<RepositorioAdapter.ItemViewHolder>() {
     // cria os fixadores de visualização (objetos de ItemRepositorio) conforme necessário
     // vincula os fixadores de visualização aos respectivos dados (atraves do onBindViewHolder)
+
+    private var listaRepositorio: List<ItemRepositorio> = emptyList()
+
+    fun updateList(items: List<ItemRepositorio>){
+        listaRepositorio = items
+        notifyDataSetChanged()
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemViewHolder {
         val itemView =
@@ -31,11 +38,11 @@ class RepositorioAdapter(
         holder.descricaoRepositorio.text = nomeLista.descricao_repositorio
         holder.qdForksFepositorio.toString()
         holder.qdeStarsRepositorios.toString()
-        holder.fotoRepositorio.setImageResource(nomeLista.foto_repositorio)
+       // holder.fotoRepositorio.setImageResource()
         holder.usernameRepositorio.text = nomeLista.username_repositorio
         holder.fullnameRepositorio.text = nomeLista.fullname_repositorio
 
-
+        Picasso.get().load(nomeLista.owner_avatar_url).into(holder.fotoRepositorio)
     }
 
     override fun getItemCount() = listaRepositorio.size
@@ -57,11 +64,11 @@ class RepositorioAdapter(
         override fun onClick(v: View?) {
             val position: Int = adapterPosition
             if (position != RecyclerView.NO_POSITION)
-                listener.onItemClick(position)
+                listener.onItemClick(listaRepositorio[position])
         }
     }
     interface OnItemClickListener{
-        fun onItemClick(position: Int)
+        fun onItemClick(item: ItemRepositorio)
     }
 }
 

@@ -45,7 +45,8 @@
                 android:layout_below="@+id/descricao_repositorio"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
-                app:srcCompat="@drawable/fork__1_" />
+                app:srcCompat="@drawable/fork__1_"
+                android:contentDescription="@string/icone_do_fork_github"/>
 
             <TextView
                 android:id="@+id/qde_forks_repositorio"

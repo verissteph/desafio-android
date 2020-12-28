@@ -2,6 +2,7 @@ package stephanie.com.desafioKotlin.webService
 
 
 import android.util.Log
+import com.google.gson.GsonBuilder
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -17,7 +18,7 @@ class NetworkingUtils {
             val URL_BASE = "https://api.github.com/"
             val retrofit = Retrofit.Builder()
                 .baseUrl(URL_BASE)
-                .addConverterFactory(GsonConverterFactory.create())
+                .addConverterFactory(GsonConverterFactory.create(GsonBuilder().create()))
                 .build()
             return retrofit
 
