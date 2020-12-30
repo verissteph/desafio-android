@@ -3,7 +3,6 @@ package stephanie.com.desafioKotlin.adapter
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.AdapterView
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
@@ -14,20 +13,16 @@ import stephanie.com.desafioKotlin.modelo.ItemRepositorio
 class RepositorioAdapter(
     val listener: OnItemClickListener
 ) : RecyclerView.Adapter<RepositorioAdapter.ItemViewHolder>() {
-    // cria os fixadores de visualização (objetos de ItemRepositorio) conforme necessário
-    // vincula os fixadores de visualização aos respectivos dados (atraves do onBindViewHolder)
-
     private var listaRepositorio: List<ItemRepositorio> = emptyList()
 
-    fun updateList(items: List<ItemRepositorio>) {
-        listaRepositorio = items
-        notifyDataSetChanged()
-    }
+
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemViewHolder {
         val itemView =
             LayoutInflater.from(parent.context).inflate(R.layout.item_repo, parent, false)
         return ItemViewHolder(itemView)
+
+
 
     }
 

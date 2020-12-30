@@ -13,8 +13,7 @@ import kotlinx.coroutines.*
 import stephanie.com.desafioKotlin.R
 import stephanie.com.desafioKotlin.adapter.PullRequestAdapter
 import stephanie.com.desafioKotlin.modelo.*
-import stephanie.com.desafioKotlin.webService.Endpoint
-import stephanie.com.desafioKotlin.webService.NetworkingUtils
+import stephanie.com.desafioKotlin.webService.EndpointRepo
 
 
 class PullRequestsActivity : AppCompatActivity(), PullRequestAdapter.OnItemClickListener {
@@ -56,7 +55,7 @@ class PullRequestsActivity : AppCompatActivity(), PullRequestAdapter.OnItemClick
         val URL_BASE = "https://api.github.com/$criador/$repositorio"
         val retrofitClient =
             NetworkingUtils.getRetrofitInstance(URL_BASE)
-        val repoService = retrofitClient.create(Endpoint::class.java)
+        val repoService = retrofitClient.create(EndpointRepo::class.java)
         job?.cancel()
         job = null
         job = CoroutineScope(Dispatchers.IO).launch {
