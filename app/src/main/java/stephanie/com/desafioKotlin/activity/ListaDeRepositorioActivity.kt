@@ -3,6 +3,7 @@ package stephanie.com.desafioKotlin.activity
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -50,12 +51,16 @@ class ListaDeRepositorioActivity : AppCompatActivity(), RepositorioAdapter.OnIte
 
     }
 
-
     override fun onItemClick(item: ItemRepositorio) {
-        val intencao = Intent(this, PullRequestsActivity::class.java)
-        intencao.putExtra("criador", item.owner_login) //owner.login ->criador
-        intencao.putExtra("repositorio", item.nome_repositorio) //repositorio.name ->repositorio
-        startActivity(intencao)
+        TODO("Not yet implemented")
     }
+
+
+//    override fun onItemClick(item: ItemRepositorio) {
+//        val intencao = Intent(this, PullRequestsActivity::class.java)
+//        intencao.putExtra("criador", item.owner_login) //owner.login ->criador
+//        intencao.putExtra("repositorio", item.nome_repositorio) //repositorio.name ->repositorio
+//        startActivity(intencao)
+//    }
 
 }
