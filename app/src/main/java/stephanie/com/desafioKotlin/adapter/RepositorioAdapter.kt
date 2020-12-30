@@ -13,7 +13,7 @@ import stephanie.com.desafioKotlin.modelo.Repositorio
 
 
 class RepositorioAdapter(
-    private var listaRepositorio: List<Repositorio>,
+     var listaRepositorio: List<Repositorio>,
     val listener: OnItemClickListener
 ) : RecyclerView.Adapter<RepositorioAdapter.ItemViewHolder>() {
 
@@ -55,7 +55,7 @@ class RepositorioAdapter(
     }
 
     interface OnItemClickListener {
-        fun onItemClick(item: ItemRepositorio)
+        fun onItemClick(position: Int)
     }
 }
 

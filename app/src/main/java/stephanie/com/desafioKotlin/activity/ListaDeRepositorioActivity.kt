@@ -11,6 +11,7 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import stephanie.com.desafioKotlin.R
+import stephanie.com.desafioKotlin.Utils.Constants
 import stephanie.com.desafioKotlin.adapter.RepositorioAdapter
 import stephanie.com.desafioKotlin.modelo.*
 import stephanie.com.desafioKotlin.webService.InicializadorAPI
@@ -18,7 +19,7 @@ import stephanie.com.desafioKotlin.webService.InicializadorAPI
 
 class ListaDeRepositorioActivity : AppCompatActivity(), RepositorioAdapter.OnItemClickListener {
     private val usuario by lazy { InicializadorAPI.start() }
-
+    private val adapterRepo = RepositorioAdapter(ArrayList(),this)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -51,16 +52,14 @@ class ListaDeRepositorioActivity : AppCompatActivity(), RepositorioAdapter.OnIte
 
     }
 
-    override fun onItemClick(item: ItemRepositorio) {
-        TODO("Not yet implemented")
+
+
+
+    override fun onItemClick(position: Int) {
+        val intencao = Intent(this, PullRequestsActivity::class.java)
+        intencao.putExtra(Constants.OWNER,adapterRepo.listaRepositorio[position].owner) //owner.login -> criador
+        intencao.putExtra("repositorio", item.nome_repositorio) //repositorio.name ->repositorio
+        startActivity(intencao)
     }
-
-
-//    override fun onItemClick(item: ItemRepositorio) {
-//        val intencao = Intent(this, PullRequestsActivity::class.java)
-//        intencao.putExtra("criador", item.owner_login) //owner.login ->criador
-//        intencao.putExtra("repositorio", item.nome_repositorio) //repositorio.name ->repositorio
-//        startActivity(intencao)
-//    }
 
 }
