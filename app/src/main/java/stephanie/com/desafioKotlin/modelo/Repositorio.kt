@@ -36,14 +36,3 @@ data class Repositorio(
 
 
     ) {}
-interface Endpoint {
-    // criando um endpoint que irá utilizar o
-    // verbo GET e irá retornar um objeto
-    // retrofit do tipo Call que será nosso
-    // container de uma lista de objetos do tipo Repositorio
-
-    @GET("search/repositories?q=language:Java&sort=stars&page=1")
-    suspend fun getRepo(): Response<RepositorioResponse>
-
-
-}

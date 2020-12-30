@@ -1,6 +1,5 @@
 package stephanie.com.desafioKotlin.activity
 
-import android.content.ClipData
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -9,12 +8,10 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.coroutines.*
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 import stephanie.com.desafioKotlin.R
 import stephanie.com.desafioKotlin.adapter.RepositorioAdapter
 import stephanie.com.desafioKotlin.modelo.*
+import stephanie.com.desafioKotlin.webService.Endpoint
 import stephanie.com.desafioKotlin.webService.NetworkingUtils
 
 
@@ -34,9 +31,9 @@ class ListaActivity : AppCompatActivity(), RepositorioAdapter.OnItemClickListene
         recycler_repositorio.adapter =
             RepositorioAdapter(this) // solucao para o erro: No adapter attached skipping layout
 
-        getData() { repositoriosData ->
-            if (repositoriosData != null) {
-                (recycler_repositorio?.adapter as? RepositorioAdapter)?.updateList(repositoriosData)
+        getData() {
+            if (it != null) {
+                (recycler_repositorio?.adapter as? RepositorioAdapter)?.updateList(it)
             }
         }
     }
@@ -44,8 +41,8 @@ class ListaActivity : AppCompatActivity(), RepositorioAdapter.OnItemClickListene
 
     override fun onItemClick(item: ItemRepositorio) {
         val intencao = Intent(this, PullRequestsActivity::class.java)
-        intencao.putExtra("criador",item.owner_login) //owner.login ->criador
-       intencao.putExtra("repositorio",item.nome_repositorio) //repositorio.name ->repositorio
+        intencao.putExtra("criador", item.owner_login) //owner.login ->criador
+        intencao.putExtra("repositorio", item.nome_repositorio) //repositorio.name ->repositorio
         startActivity(intencao)
     }
 

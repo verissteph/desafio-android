@@ -8,7 +8,6 @@ import retrofit2.Callback
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import stephanie.com.desafioKotlin.modelo.Endpoint
 import stephanie.com.desafioKotlin.modelo.Repositorio
 
 class NetworkingUtils {
