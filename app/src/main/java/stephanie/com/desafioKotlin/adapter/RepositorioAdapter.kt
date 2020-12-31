@@ -7,13 +7,14 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.squareup.picasso.Picasso
 import stephanie.com.desafioKotlin.R
 import stephanie.com.desafioKotlin.modelo.ItemRepositorio
 import stephanie.com.desafioKotlin.modelo.Repositorio
 
 
 class RepositorioAdapter(
-     var listaRepositorio: List<Repositorio>,
+    var listaRepositorio: List<Repositorio>,
     val listener: OnItemClickListener
 ) : RecyclerView.Adapter<RepositorioAdapter.ItemViewHolder>() {
 
@@ -28,22 +29,28 @@ class RepositorioAdapter(
 
     override fun onBindViewHolder(holder: ItemViewHolder, position: Int) {
 
-
-        holder.nomeRepositorio.text = listaRepositorio[position].nome_repo
-        holder.descricaoRepositorio.text = listaRepositorio[position].descricao_repo
-        holder.qdForksFepositorio.text = listaRepositorio[position].forks_count_repo
-        holder.qdeStarsRepositorios.text = listaRepositorio[position].stargazers_count_repo
-        holder.usernameRepositorio.text =listaRepositorio[position].username_repo
-        holder.fullnameRepositorio.text = listaRepositorio[position].full_name_repo
+        val lista = listaRepositorio[position]
+        holder.nomeRepositorio.text = lista.nome_repo
+        holder.descricaoRepositorio.text = lista.descricao_repo
+        holder.qdForksFepositorio.text = lista.forks_count_repo
+        holder.qdeStarsRepositorios.text = lista.stargazers_count_repo
+        holder.usernameRepositorio.text = lista.username_repo
+        holder.fullnameRepositorio.text = lista.full_name_repo
 
         //Falta incluir a foto
+        // Picasso.get().load("preciso acessar o avatar_url que esta no owner").into(holder.fotoRepositorio);
+
+
+        holder.itemView.setOnClickListener{
+        listener.onItemClick(position)
+    }
+
     }
 
     override fun getItemCount() = listaRepositorio.size
 
     inner class ItemViewHolder(itemView: View) :
-        RecyclerView.ViewHolder(itemView)
-         {
+        RecyclerView.ViewHolder(itemView) {
         val nomeRepositorio: TextView = itemView.findViewById(R.id.nome_repositorio)
         val descricaoRepositorio: TextView = itemView.findViewById(R.id.descricao_repositorio)
         val qdForksFepositorio: TextView = itemView.findViewById(R.id.qde_forks_repositorio)

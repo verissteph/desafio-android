@@ -3,6 +3,7 @@ package stephanie.com.desafioKotlin.activity
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.widget.Adapter
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -17,9 +18,11 @@ import stephanie.com.desafioKotlin.modelo.*
 import stephanie.com.desafioKotlin.webService.InicializadorAPI
 
 
-class ListaDeRepositorioActivity : AppCompatActivity(), RepositorioAdapter.OnItemClickListener {
+class ListaDeRepositorioActivity :
+    AppCompatActivity(),
+    RepositorioAdapter.OnItemClickListener {
     private val usuario by lazy { InicializadorAPI.start() }
-    private val adapterRepo = RepositorioAdapter(ArrayList(),this)
+    //private val adapterRepo = RepositorioAdapter(ArrayList(),this)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -53,13 +56,12 @@ class ListaDeRepositorioActivity : AppCompatActivity(), RepositorioAdapter.OnIte
     }
 
 
-
-
     override fun onItemClick(position: Int) {
-        val intencao = Intent(this, PullRequestsActivity::class.java)
-        intencao.putExtra(Constants.OWNER,adapterRepo.listaRepositorio[position].owner) //owner.login -> criador
-        intencao.putExtra("repositorio", item.nome_repositorio) //repositorio.name ->repositorio
-        startActivity(intencao)
+        Toast.makeText(this, "CLICOU ", Toast.LENGTH_LONG).show()
+        //    val intencao = Intent(this, PullRequestsActivity::class.java)
+//        intencao.putExtra(Constants.OWNER,adapterRepo.listaRepositorio[position].owner) //owner.login -> criador
+//        intencao.putExtra("repositorio", item.nome_repositorio) //repositorio.name ->repositorio
+        //     startActivity(intencao)
     }
 
 }
