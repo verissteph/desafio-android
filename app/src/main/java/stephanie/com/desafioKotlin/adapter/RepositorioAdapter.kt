@@ -36,9 +36,7 @@ class RepositorioAdapter(
         holder.qdeStarsRepositorios.text = lista.stargazers_count_repo
         holder.usernameRepositorio.text = lista.username_repo
         holder.fullnameRepositorio.text = lista.full_name_repo
-
-        //Falta incluir a foto
-        // Picasso.get().load("preciso acessar o avatar_url que esta no owner").into(holder.fotoRepositorio);
+        Picasso.get().load(lista.owner.avatar_url).into(holder.fotoRepositorio);
 
 
         holder.itemView.setOnClickListener{
