@@ -6,7 +6,7 @@ import retrofit2.http.Path
 import stephanie.com.desafioKotlin.modelo.ItemPullRequest
 
 interface EndpointPull {
-    @GET("{owner}/{repositorio}/pulls")
+    @GET("repos/{owner}/{repositorio}/pulls")
      fun getPulls(
         @Path("owner") owner: String,
         @Path("repositorio") repositorio: String

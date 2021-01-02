@@ -22,7 +22,7 @@ class ListaDeRepositorioActivity :
     AppCompatActivity(),
     RepositorioAdapter.OnItemClickListener {
     private val usuario by lazy { InicializadorAPI.start() }
-    //private val adapterRepo = RepositorioAdapter(ArrayList(),this)
+    private val adapterRepo = RepositorioAdapter(ArrayList(),this)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -57,11 +57,10 @@ class ListaDeRepositorioActivity :
 
 
     override fun onItemClick(position: Int) {
-        Toast.makeText(this, "CLICOU ", Toast.LENGTH_LONG).show()
-        //    val intencao = Intent(this, PullRequestsActivity::class.java)
-//        intencao.putExtra(Constants.OWNER,adapterRepo.listaRepositorio[position].owner) //owner.login -> criador
-//        intencao.putExtra("repositorio", item.nome_repositorio) //repositorio.name ->repositorio
-        //     startActivity(intencao)
+        val intencao = Intent(this, PullRequestsActivity::class.java)
+        intencao.putExtra(Constants.OWNER,adapterRepo.listaRepositorio[position].owner.login)
+        intencao.putExtra(Constants.REPOSITORIO,adapterRepo.listaRepositorio[position].owner.avatar_url)
+             startActivity(intencao)
     }
 
 }
