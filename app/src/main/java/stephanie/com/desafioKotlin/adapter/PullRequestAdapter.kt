@@ -10,17 +10,13 @@ import com.squareup.picasso.Picasso
 import stephanie.com.desafioKotlin.R
 import stephanie.com.desafioKotlin.modelo.ItemPullRequest
 import stephanie.com.desafioKotlin.modelo.ItemRepositorio
+import stephanie.com.desafioKotlin.modelo.PullRequest
 
 class PullRequestAdapter(
+    val listaPullRequest: List<PullRequest>,
     val listener: OnItemClickListener,
 ) : RecyclerView.Adapter<PullRequestAdapter.ItemViewHolder>() {
 
-    private var listaPullRequest: List<ItemPullRequest> = emptyList()
-
-    fun updateList(items: List<ItemPullRequest>) {
-        listaPullRequest = items
-        notifyDataSetChanged()
-    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemViewHolder {
         val itemView =
@@ -31,13 +27,16 @@ class PullRequestAdapter(
 
     override fun onBindViewHolder(holder: ItemViewHolder, position: Int) {
         val nomeLista = listaPullRequest[position]
-        holder.pullRequestTitulo.text = nomeLista.pull_request_titulo
-        holder.pullRequestDescricao.text = nomeLista.pull_request_descricao
-        holder.usernamePullRequest.text = nomeLista.username_pull_request
-        holder.pullRequestNome.text = nomeLista.pull_request_nome
-        holder.pullRequestDate.text = nomeLista.pull_request_date
-        Picasso.get().load(nomeLista.foto_usuario_pull_request).into(holder.fotoUsuarioPullRequest)
 
+        holder.pullRequestTitulo.text = nomeLista.titulo_pull
+        holder.pullRequestDescricao.text = nomeLista.corpo_pull
+        holder.pullRequestNome.text = nomeLista.user.nome_pull
+        holder.pullRequestDate.text = nomeLista.criacao_pull
+        Picasso.get().load(nomeLista.user.foto_pull).into(holder.fotoUsuarioPullRequest)
+
+        holder.itemView.setOnClickListener{
+            listener.OnItemClick(position)
+        }
 
     }
 
@@ -55,19 +54,9 @@ class PullRequestAdapter(
         val pullRequestNome: TextView = itemView.findViewById(R.id.pull_request_name)
         val pullRequestDate: TextView = itemView.findViewById(R.id.pull_request_date)
 
-//        init {
-//            itemView.setOnClickListener(this)
-//        }
-
-//        override fun onClick(v: View?) {
-//            val position: Int = adapterPosition
-//            if (position != RecyclerView.NO_POSITION)
-//                listener.onItemClick(listaPullRequest[position])
-//
-//        }
     }
 
     interface OnItemClickListener {
-        fun OnItemClick(item: ItemPullRequest)
+        fun OnItemClick(position: Int)
     }
 }
