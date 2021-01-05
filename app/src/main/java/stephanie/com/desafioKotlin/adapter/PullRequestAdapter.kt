@@ -8,8 +8,6 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.squareup.picasso.Picasso
 import stephanie.com.desafioKotlin.R
-import stephanie.com.desafioKotlin.modelo.ItemPullRequest
-import stephanie.com.desafioKotlin.modelo.ItemRepositorio
 import stephanie.com.desafioKotlin.modelo.PullRequest
 
 class PullRequestAdapter(

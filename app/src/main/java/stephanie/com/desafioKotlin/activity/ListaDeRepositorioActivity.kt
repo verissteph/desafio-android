@@ -3,6 +3,7 @@ package stephanie.com.desafioKotlin.activity
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -57,7 +58,7 @@ class ListaDeRepositorioActivity :
     override fun onItemClick(position: Int) {
         val intencao = Intent(this, PullRequestsActivity::class.java)
         intencao.putExtra(Constants.OWNER,adapterRepo.listaRepositorio[position].owner.login)
-        intencao.putExtra(Constants.REPOSITORIO,adapterRepo.listaRepositorio[position].owner.avatar_url)
+        intencao.putExtra(Constants.REPOSITORIO,adapterRepo.listaRepositorio[position].nome_repo)
 
 
            startActivity(intencao)

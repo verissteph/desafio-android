@@ -14,7 +14,7 @@ import stephanie.com.desafioKotlin.modelo.Repositorio
 
 
 class RepositorioAdapter(
-    var listaRepositorio: List<Repositorio>,
+    val listaRepositorio: List<Repositorio>,
     val listener: OnItemClickListener
 ) : RecyclerView.Adapter<RepositorioAdapter.ItemViewHolder>() {
 
