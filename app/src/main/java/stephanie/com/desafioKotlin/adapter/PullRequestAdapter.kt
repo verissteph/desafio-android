@@ -27,10 +27,12 @@ class PullRequestAdapter(
     override fun onBindViewHolder(holder: ItemViewHolder, position: Int) {
         val nomeLista = listaPullRequest[position]
 
+
         holder.pullRequestTitulo.text = nomeLista.titulo_pull
         holder.pullRequestDescricao.text = nomeLista.corpo_pull
         holder.pullRequestNome.text = nomeLista.user.nome_pull
         holder.pullRequestDate.text = nomeLista.criacao_pull
+
 
 
         Picasso.get().load(nomeLista.user.foto_pull).into(holder.fotoUsuarioPullRequest)

@@ -32,14 +32,17 @@ class PullRequestsActivity : AppCompatActivity(), PullRequestAdapter.OnItemClick
         recyclerPullRequest.setHasFixedSize(true)
         recyclerPullRequest.adapter = adapterPull
 
-        setSupportActionBar(findViewById(R.id.toolBar))
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)
-
-
         //pegando dados da outra activity e recuperando
         owner = intent.getStringExtra(Constants.OWNER).toString()
         repositorio = intent.getStringExtra(Constants.REPOSITORIO).toString()
         getPulls(owner, repositorio)
+
+        setSupportActionBar(findViewById(R.id.toolBar))
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.title = repositorio
+
+
+
 
 
     }
