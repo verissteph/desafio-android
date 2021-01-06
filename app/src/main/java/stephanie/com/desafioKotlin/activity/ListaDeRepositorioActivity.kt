@@ -57,10 +57,8 @@ class ListaDeRepositorioActivity :
 
     override fun onItemClick(position: Int) {
         val intencao = Intent(this, PullRequestsActivity::class.java)
-        intencao.putExtra(Constants.OWNER,adapterRepo.listaRepositorio[position].owner.login)
+        intencao.putExtra(Constants.OWNER, adapterRepo.listaRepositorio[position].owner.login)
         intencao.putExtra(Constants.REPOSITORIO,adapterRepo.listaRepositorio[position].nome_repo)
-
-
            startActivity(intencao)
     }
 

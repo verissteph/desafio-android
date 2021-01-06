@@ -6,10 +6,8 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
 import com.squareup.picasso.Picasso
 import stephanie.com.desafioKotlin.R
-import stephanie.com.desafioKotlin.modelo.ItemRepositorio
 import stephanie.com.desafioKotlin.modelo.Repositorio
 
 
@@ -40,8 +38,8 @@ class RepositorioAdapter(
 
 
         holder.itemView.setOnClickListener{
-        listener.onItemClick(position)
-    }
+            listener.onItemClick(position)
+        }
 
     }
 
