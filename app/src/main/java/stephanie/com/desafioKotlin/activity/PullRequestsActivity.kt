@@ -23,16 +23,14 @@ class PullRequestsActivity : AppCompatActivity(), PullRequestAdapter.OnItemClick
     private val adapterPull = PullRequestAdapter(listaPull, this)
     var owner = ""
     var repositorio = ""
-
+    lateinit var recyclerPullRequest: RecyclerView
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_pull_requests)
-        val RecyclerPullRequest = findViewById<RecyclerView>(R.id.recycler_pull_request)
-
-
-        RecyclerPullRequest?.layoutManager = LinearLayoutManager(this)
-        RecyclerPullRequest?.setHasFixedSize(true)
-        RecyclerPullRequest?.adapter = adapterPull
+        recyclerPullRequest = findViewById(R.id.recycler_pull_request)
+        recyclerPullRequest.layoutManager = LinearLayoutManager(this)
+        recyclerPullRequest.setHasFixedSize(true)
+        recyclerPullRequest.adapter = adapterPull
 
         setSupportActionBar(findViewById(R.id.toolBar))
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
@@ -42,8 +40,6 @@ class PullRequestsActivity : AppCompatActivity(), PullRequestAdapter.OnItemClick
         owner = intent.getStringExtra(Constants.OWNER).toString()
         repositorio = intent.getStringExtra(Constants.REPOSITORIO).toString()
         getPulls(owner, repositorio)
-
-
 
 
     }
@@ -62,8 +58,7 @@ class PullRequestsActivity : AppCompatActivity(), PullRequestAdapter.OnItemClick
             ) {
                 if (response.isSuccessful) {
                     response.body()?.let {
-
-                        findViewById<RecyclerView>(R.id.recycler_pull_request).adapter =
+                        recyclerPullRequest.adapter =
                             PullRequestAdapter(
                                 it as MutableList<PullRequest>,
                                 this@PullRequestsActivity

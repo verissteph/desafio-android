@@ -1,5 +1,6 @@
 package stephanie.com.desafioKotlin.adapter
 
+import android.text.format.DateFormat
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -30,6 +31,8 @@ class PullRequestAdapter(
         holder.pullRequestDescricao.text = nomeLista.corpo_pull
         holder.pullRequestNome.text = nomeLista.user.nome_pull
         holder.pullRequestDate.text = nomeLista.criacao_pull
+
+
         Picasso.get().load(nomeLista.user.foto_pull).into(holder.fotoUsuarioPullRequest)
 
         holder.itemView.setOnClickListener{
