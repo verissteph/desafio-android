@@ -24,13 +24,13 @@ import stephanie.com.desafioKotlin.webService.InicializadorAPIPull
 class PullRequestsActivity : AppCompatActivity(), PullRequestAdapter.OnItemClickListener {
     val listaPull = ArrayList<PullRequest>()
     private val adapterPull = PullRequestAdapter(listaPull, this)
-    val RecyclerPullRequest = findViewById<RecyclerView>(R.id.recycler_pull_request)
     var owner = ""
     var repositorio = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_pull_requests)
+        val RecyclerPullRequest = findViewById<RecyclerView>(R.id.recycler_pull_request)
 
 
         RecyclerPullRequest?.layoutManager = LinearLayoutManager(this)
@@ -61,7 +61,8 @@ class PullRequestsActivity : AppCompatActivity(), PullRequestAdapter.OnItemClick
             ) {
                 if (response.isSuccessful) {
                     response.body()?.let {
-                        RecyclerPullRequest.adapter =
+                        // RecyclerPullRequest.adapter =
+                        findViewById<RecyclerView>(R.id.recycler_pull_request).adapter =
                             PullRequestAdapter(
                                 it as MutableList<PullRequest>,
                                 this@PullRequestsActivity
