@@ -12,7 +12,7 @@ import stephanie.com.desafioKotlin.modelo.Repositorio
 
 
 class RepositorioAdapter(
-    val listaRepositorio: List<Repositorio>,
+    val listaRepositorio: MutableList<Repositorio>,
     val listener: OnItemClickListener
 ) : RecyclerView.Adapter<RepositorioAdapter.ItemViewHolder>() {
 

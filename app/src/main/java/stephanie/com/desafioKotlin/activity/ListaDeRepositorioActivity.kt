@@ -41,7 +41,8 @@ class ListaDeRepositorioActivity :
                 if (response.isSuccessful) {
                     response.body()?.let {
                         recycler_repositorio.adapter =
-                            RepositorioAdapter(it.items, this@ListaDeRepositorioActivity)
+                            RepositorioAdapter(it.items as MutableList<Repositorio>, this@ListaDeRepositorioActivity)
+                            adapterRepo.listaRepositorio.addAll(it.items)
                     }
                 }
             }

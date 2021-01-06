@@ -10,5 +10,5 @@ interface EndpointPull {
      fun getPulls(
         @Path("owner") owner: String,
         @Path("repositorio") repositorio: String
-    ): Call<PullRequest>
+    ): Call<List<PullRequest>>
 }

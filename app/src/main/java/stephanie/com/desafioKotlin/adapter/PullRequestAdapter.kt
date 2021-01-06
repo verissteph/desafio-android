@@ -11,7 +11,7 @@ import stephanie.com.desafioKotlin.R
 import stephanie.com.desafioKotlin.modelo.PullRequest
 
 class PullRequestAdapter(
-    val listaPullRequest: List<PullRequest>,
+    val listaPullRequest: MutableList<PullRequest>,
     val listener: OnItemClickListener,
 ) : RecyclerView.Adapter<PullRequestAdapter.ItemViewHolder>() {
 

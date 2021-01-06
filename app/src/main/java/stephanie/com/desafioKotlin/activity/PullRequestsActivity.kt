@@ -22,10 +22,9 @@ import stephanie.com.desafioKotlin.webService.InicializadorAPIPull
 
 
 class PullRequestsActivity : AppCompatActivity(), PullRequestAdapter.OnItemClickListener {
-
-    private val adapterPull = PullRequestAdapter(ArrayList(), this)
-    private val listaPull: ArrayList<PullRequest> = ArrayList()
-    val recycler_pull_request = findViewById<RecyclerView>(R.id.recycler_pull_request)
+    val listaPull = ArrayList<PullRequest>()
+    private val adapterPull = PullRequestAdapter(listaPull, this)
+    val RecyclerPullRequest = findViewById<RecyclerView>(R.id.recycler_pull_request)
     var owner = ""
     var repositorio = ""
 
@@ -34,13 +33,12 @@ class PullRequestsActivity : AppCompatActivity(), PullRequestAdapter.OnItemClick
         setContentView(R.layout.activity_pull_requests)
 
 
-        recycler_pull_request?.layoutManager = LinearLayoutManager(this)
-        recycler_pull_request.setHasFixedSize(true)
-        recycler_pull_request?.adapter = adapterPull
+        RecyclerPullRequest?.layoutManager = LinearLayoutManager(this)
+        RecyclerPullRequest?.setHasFixedSize(true)
+        RecyclerPullRequest?.adapter = adapterPull
 
         setSupportActionBar(findViewById(R.id.toolBar))
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
-
 
 
         //pegando dados da outra activity e recuperando
@@ -55,19 +53,25 @@ class PullRequestsActivity : AppCompatActivity(), PullRequestAdapter.OnItemClick
     ) {
         val api = InicializadorAPIPull.startPull()
         val chamada = api.getPulls(owner, repositorio)
-        chamada.enqueue(object : Callback<PullRequest> {
+        chamada.enqueue(object : Callback<List<PullRequest>> {
 
-            override fun onResponse(call: Call<PullRequest>, response: Response<PullRequest>) {
+            override fun onResponse(
+                call: Call<List<PullRequest>>,
+                response: Response<List<PullRequest>>
+            ) {
                 if (response.isSuccessful) {
                     response.body()?.let {
-                        recycler_pull_request.adapter =
-                            PullRequestAdapter(listaPull, this@PullRequestsActivity)
-                       listaPull.addAll(listaPull) // o erro de index e size era p ser resolvido aq!
+                        RecyclerPullRequest.adapter =
+                            PullRequestAdapter(
+                                it as MutableList<PullRequest>,
+                                this@PullRequestsActivity
+                            )
+                        listaPull.addAll(it)
                     }
                 }
             }
 
-            override fun onFailure(call: Call<PullRequest>, t: Throwable) {
+            override fun onFailure(call: Call<List<PullRequest>>, t: Throwable) {
                 Log.d("Erro de chamada api", t.message.toString())
             }
 
@@ -83,11 +87,11 @@ class PullRequestsActivity : AppCompatActivity(), PullRequestAdapter.OnItemClick
 
 
     override fun OnItemClick(position: Int) {
-       val intencao = Intent(Intent.ACTION_VIEW)
+        val intencao = Intent(Intent.ACTION_VIEW)
         intencao.data = Uri.parse(adapterPull.listaPullRequest[position].user.url_pull)
-         startActivity(intencao)
+        startActivity(intencao)
 
-      //  Toast.makeText(this, "clicando", Toast.LENGTH_LONG).show()
+        //  Toast.makeText(this, "clicando", Toast.LENGTH_LONG).show()
     }
 
 
