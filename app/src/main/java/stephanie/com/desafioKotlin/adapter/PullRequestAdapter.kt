@@ -46,7 +46,6 @@ class PullRequestAdapter(
         val pullRequestDescricao: TextView = itemView.findViewById(R.id.pull_request_descricao)
         val fotoUsuarioPullRequest: ImageView =
             itemView.findViewById(R.id.foto_usuario_pull_request)
-        val usernamePullRequest: TextView = itemView.findViewById(R.id.username_pull_request)
         val pullRequestNome: TextView = itemView.findViewById(R.id.pull_request_name)
         val pullRequestDate: TextView = itemView.findViewById(R.id.pull_request_date)
 

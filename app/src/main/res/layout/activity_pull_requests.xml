@@ -11,7 +11,7 @@
         style="@style/Widget.MaterialComponents.Toolbar.Primary"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:title="Nome Repositório" />
+        tools:title="Nome Repositório" />
 
     <LinearLayout
         android:layout_width="match_parent"

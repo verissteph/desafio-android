@@ -5,18 +5,15 @@ import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import android.view.MenuItem
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import stephanie.com.desafioKotlin.BuildConfig.DEBUG
 import stephanie.com.desafioKotlin.R
 import stephanie.com.desafioKotlin.Utils.Constants
 import stephanie.com.desafioKotlin.adapter.PullRequestAdapter
-import stephanie.com.desafioKotlin.modelo.Owner
 import stephanie.com.desafioKotlin.modelo.PullRequest
 import stephanie.com.desafioKotlin.webService.InicializadorAPIPull
 
@@ -45,6 +42,10 @@ class PullRequestsActivity : AppCompatActivity(), PullRequestAdapter.OnItemClick
         owner = intent.getStringExtra(Constants.OWNER).toString()
         repositorio = intent.getStringExtra(Constants.REPOSITORIO).toString()
         getPulls(owner, repositorio)
+
+
+
+
     }
 
     fun getPulls(
@@ -61,7 +62,7 @@ class PullRequestsActivity : AppCompatActivity(), PullRequestAdapter.OnItemClick
             ) {
                 if (response.isSuccessful) {
                     response.body()?.let {
-                        // RecyclerPullRequest.adapter =
+
                         findViewById<RecyclerView>(R.id.recycler_pull_request).adapter =
                             PullRequestAdapter(
                                 it as MutableList<PullRequest>,
@@ -92,7 +93,7 @@ class PullRequestsActivity : AppCompatActivity(), PullRequestAdapter.OnItemClick
         intencao.data = Uri.parse(adapterPull.listaPullRequest[position].user.url_pull)
         startActivity(intencao)
 
-        //  Toast.makeText(this, "clicando", Toast.LENGTH_LONG).show()
+
     }
 
 
