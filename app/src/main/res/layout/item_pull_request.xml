@@ -16,11 +16,24 @@
             android:layout_width="match_parent"
             android:layout_height="175dp">
             <TextView
+                android:id="@+id/pull_request_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:textColor="#3981BC"
+                android:text="TESTANDO"
+                android:textSize="16dp"
+
+                />
+
+            <TextView
                 android:id="@+id/pull_request_descricao"
                 android:layout_width="374dp"
                 android:layout_height="40dp"
+                android:layout_below="@+id/pull_request_title"
                 android:layout_marginStart="16dp"
-                android:layout_marginTop="36dp"
+                android:layout_marginTop="10dp"
                 android:layout_marginEnd="16dp"
                 android:text="Descrição pull request"
                 android:textSize="16dp" />
@@ -37,23 +50,24 @@
 
             <TextView
                 android:id="@+id/pull_request_name"
-                android:layout_width="100dp"
+                android:layout_width="wrap_content"
                 android:layout_height="20dp"
                 android:layout_below="@+id/pull_request_descricao"
-                android:layout_marginStart="24dp"
-                android:layout_marginTop="35dp"
-                android:layout_marginEnd="50dp"
-                android:layout_marginBottom="590dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="32dp"
+                android:layout_marginEnd="48dp"
+                android:layout_marginBottom="0dp"
                 android:layout_toEndOf="@+id/foto_usuario_pull_request"
                 android:text="Nome Completo"
+                android:textColor="#3981BC"
                 android:textAlignment="center" />
             <TextView
                 android:id="@+id/pull_request_date"
-                android:layout_width="136dp"
-                android:layout_height="18dp"
+                android:layout_width="wrap_content"
+                android:layout_height="16dp"
                 android:layout_below="@+id/pull_request_descricao"
-                android:layout_marginStart="275dp"
-                android:layout_marginTop="70dp"
+                android:layout_marginStart="300dp"
+                android:layout_marginTop="64dp"
                 android:layout_marginEnd="8dp"
                 android:text="XXX/XX/XX"
                 android:textAlignment="center" />

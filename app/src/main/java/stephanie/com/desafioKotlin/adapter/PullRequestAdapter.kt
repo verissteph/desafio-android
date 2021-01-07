@@ -47,7 +47,7 @@ class PullRequestAdapter(
 
     class ItemViewHolder(itemView: View) :
         RecyclerView.ViewHolder(itemView) {
-        val pullRequestTitulo: TextView = itemView.findViewById(R.id.pull_request_name)
+        val pullRequestTitulo: TextView = itemView.findViewById(R.id.pull_request_title)
         val pullRequestDescricao: TextView = itemView.findViewById(R.id.pull_request_descricao)
         val fotoUsuarioPullRequest: ImageView =
             itemView.findViewById(R.id.foto_usuario_pull_request)
