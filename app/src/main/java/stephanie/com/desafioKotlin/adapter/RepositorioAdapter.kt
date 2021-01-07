@@ -1,10 +1,12 @@
 package stephanie.com.desafioKotlin.adapter
 
+import android.content.ClipData
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.squareup.picasso.Picasso
 import stephanie.com.desafioKotlin.R
@@ -16,15 +18,33 @@ class RepositorioAdapter(
     val listener: OnItemClickListener
 ) : RecyclerView.Adapter<RepositorioAdapter.ItemViewHolder>() {
 
+//    companion object
+//    {
+//        private const val VIEW_TYPE_DATA = 0;
+//        private const val VIEW_TYPE_PROGRESS = 1;
+//    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemViewHolder {
         val itemView =
             LayoutInflater.from(parent.context).inflate(R.layout.item_repo, parent, false)
         return ItemViewHolder(itemView)
-
-
+//        return when (viewType)
+//        {
+//            VIEW_TYPE_DATA ->
+//            {
+//                val view = LayoutInflater.from(parent.context).inflate(R.layout.item_repo,parent,false)
+//                  ItemViewHolder(view)
+//
+//
+//            }
+//            VIEW_TYPE_PROGRESS ->
+//            {
+//                val view = LayoutInflater.from(parent.context).inflate(R.layout.progressbar,parent,false)
+//                ItemViewHolder(view)
+//            }
+//            else -> throw IllegalArgumentException("View type diferente")
+//        }
     }
-
     override fun onBindViewHolder(holder: ItemViewHolder, position: Int) {
 
         val lista = listaRepositorio[position]
@@ -36,7 +56,6 @@ class RepositorioAdapter(
         holder.fullnameRepositorio.text = lista.full_name_repo
         Picasso.get().load(lista.owner.avatar_url).into(holder.fotoRepositorio);
 
-
         holder.itemView.setOnClickListener{
             listener.onItemClick(position)
         }
@@ -44,6 +63,9 @@ class RepositorioAdapter(
     }
 
     override fun getItemCount() = listaRepositorio.size
+
+
+
 
     inner class ItemViewHolder(itemView: View) :
         RecyclerView.ViewHolder(itemView) {
@@ -60,6 +82,9 @@ class RepositorioAdapter(
     interface OnItemClickListener {
         fun onItemClick(position: Int)
     }
+
+
+
 }
 
 

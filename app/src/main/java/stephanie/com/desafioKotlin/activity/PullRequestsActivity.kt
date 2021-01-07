@@ -40,11 +40,6 @@ class PullRequestsActivity : AppCompatActivity(), PullRequestAdapter.OnItemClick
         setSupportActionBar(findViewById(R.id.toolBar))
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.title = repositorio
-
-
-
-
-
     }
 
     fun getPulls(
