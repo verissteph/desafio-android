@@ -11,5 +11,5 @@ data class PullRequest(
     @SerializedName("created_at")
     val criacao_pull: String,
     @SerializedName("user")
-    val user :UserPullRequest,
-    )
+    val user: UserPullRequest,
+)

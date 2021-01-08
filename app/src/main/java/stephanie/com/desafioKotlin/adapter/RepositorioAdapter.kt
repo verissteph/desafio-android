@@ -33,14 +33,20 @@ class RepositorioAdapter(
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RepositorioViewHolder {
 //
-        return RepositorioViewHolder(ItemRepoBinding.inflate(LayoutInflater.from(parent.context),parent,false))
+        return RepositorioViewHolder(
+            ItemRepoBinding.inflate(
+                LayoutInflater.from(parent.context),
+                parent,
+                false
+            )
+        )
 
     }
 
     override fun onBindViewHolder(holder: RepositorioViewHolder, position: Int) {
-       holder.binding(this.listaRepositorio[position])
+        holder.binding(this.listaRepositorio[position])
 
-        holder.repoBinding.cardRepo.setOnClickListener{
+        holder.repoBinding.cardRepo.setOnClickListener {
             listener.onItemClick(position)
         }
 

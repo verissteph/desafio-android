@@ -44,8 +44,8 @@ class PullRequestAdapter(
 
 
     override fun onBindViewHolder(holder: PullViewHolder, position: Int) {
-            holder.binding(this.listaPullRequest[position])
-        holder.pullBinding.cardPull.setOnClickListener{
+        holder.binding(this.listaPullRequest[position])
+        holder.pullBinding.cardPull.setOnClickListener {
             listener.OnItemClick(position)
         }
     }

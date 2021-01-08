@@ -7,7 +7,7 @@ import stephanie.com.desafioKotlin.modelo.PullRequest
 
 interface EndpointPull {
     @GET("repos/{owner}/{repositorio}/pulls")
-     fun getPulls(
+    fun getPulls(
         @Path("owner") owner: String,
         @Path("repositorio") repositorio: String
     ): Call<List<PullRequest>>

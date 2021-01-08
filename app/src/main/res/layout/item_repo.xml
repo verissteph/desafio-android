@@ -1,16 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/card_repo"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    app:cardCornerRadius="16dp"
+    android:layout_marginStart="8dp"
     android:layout_marginTop="8dp"
+    android:layout_marginEnd="8dp"
     android:layout_marginBottom="8dp"
     app:cardBackgroundColor="#dee2e6"
-    android:layout_marginStart="8dp"
-    android:layout_marginEnd="8dp">
+    app:cardCornerRadius="16dp">
 
     <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
@@ -24,22 +23,22 @@
 
 
             <TextView
-                android:layout_marginTop="16dp"
-                android:layout_marginStart="16dp"
-                android:textColor="#3981BC"
                 android:id="@+id/nome_repositorio"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
                 android:text="NOME REPOSITORIO"
-                android:textSize="24dp"/>
+                android:textColor="#3981BC"
+                android:textSize="24dp" />
 
             <TextView
                 android:id="@+id/descricao_repositorio"
                 android:layout_width="240dp"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/nome_repositorio"
-                android:layout_marginTop="1dp"
                 android:layout_marginStart="16dp"
+                android:layout_marginTop="1dp"
                 android:maxLines="3"
                 android:text="Descricao repositorio Mussum Ipsum,
                  cacilds vidis litro abertis. In elementis mé pra quem é
@@ -54,8 +53,8 @@
                 android:layout_below="@+id/descricao_repositorio"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
-                app:srcCompat="@drawable/ic_png_transparent_github_computer_icons_branching_github_branch_fork_git_thumbnail"
-                android:contentDescription="@string/icone_do_fork_github"/>
+                android:contentDescription="@string/icone_do_fork_github"
+                app:srcCompat="@drawable/ic_png_transparent_github_computer_icons_branching_github_branch_fork_git_thumbnail" />
 
             <TextView
                 android:id="@+id/qde_forks_repositorio"
@@ -91,12 +90,11 @@
                 android:id="@+id/foto_repositorio"
                 android:layout_width="88dp"
                 android:layout_height="88dp"
-                android:layout_marginTop="16dp"
                 android:layout_marginStart="30dp"
+                android:layout_marginTop="16dp"
                 android:layout_toEndOf="@+id/descricao_repositorio"
                 android:src="@drawable/ic_usuario"
-                app:shapeAppearanceOverlay="@style/circleImageViewStyle"
-                />
+                app:shapeAppearanceOverlay="@style/circleImageViewStyle" />
 
             <TextView
                 android:id="@+id/username_repositorio"
@@ -104,19 +102,19 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/foto_repositorio"
                 android:layout_marginTop="5dp"
-                android:gravity="end"
                 android:layout_marginEnd="0dp"
-                android:textColor="#3981BC"
+                android:gravity="end"
                 android:text="username"
-                android:textSize="16sp"/>
+                android:textColor="#3981BC"
+                android:textSize="16sp" />
 
             <TextView
                 android:id="@+id/fullname_repositorio"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/username_repositorio"
-                android:gravity="end"
                 android:layout_marginTop="5dp"
+                android:gravity="end"
                 android:text="Nome completo" />
 
 

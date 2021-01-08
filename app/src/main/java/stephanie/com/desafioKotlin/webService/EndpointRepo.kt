@@ -9,7 +9,7 @@ import stephanie.com.desafioKotlin.modelo.ItemRepositorio
 interface EndpointRepo {
 
     @GET("search/repositories?q=language:Java&sort=stars&page=1")
-    fun getRepo(@Query("page")page:Int): Call<ItemRepositorio>
+    fun getRepo(@Query("page") page: Int): Call<ItemRepositorio>
 
 
 }

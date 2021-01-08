@@ -5,7 +5,6 @@ data class Owner(
      val avatar_url: String,
 
 
-
-) {
+     ) {
 
 }

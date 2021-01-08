@@ -25,7 +25,7 @@ class PullRequestsActivity : AppCompatActivity(), PullRequestAdapter.OnItemClick
     private val adapterPull = PullRequestAdapter(listaPull, this)
     var owner = ""
     var repositorio = ""
-    lateinit var binding:ActivityPullRequestsBinding
+    lateinit var binding: ActivityPullRequestsBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityPullRequestsBinding.inflate(layoutInflater)
@@ -61,14 +61,15 @@ class PullRequestsActivity : AppCompatActivity(), PullRequestAdapter.OnItemClick
                     response.body()?.let {
 
 
-                     adapterPull.listaPullRequest.addAll(it)
+                        adapterPull.listaPullRequest.addAll(it)
 //                        val warning = findViewById<View>(R.id.warning_not_pull)
 //                        if(adapterPull.itemCount == 0){
 //                            warning.visibility = View.GONE
 //                        }else{
 //                            warning.visibility = View.VISIBLE
 //                        }
-                     adapterPull.notifyDataSetChanged()                    }
+                        adapterPull.notifyDataSetChanged()
+                    }
                 }
             }
 

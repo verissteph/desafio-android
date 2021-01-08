@@ -8,5 +8,5 @@ data class UserPullRequest(
     @SerializedName("avatar_url")
     val foto_pull: String,
     @SerializedName("html_url")
-    val url_pull:String,
+    val url_pull: String,
 )

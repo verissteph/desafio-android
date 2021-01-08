@@ -24,8 +24,8 @@ class ListaDeRepositorioActivity :
     RepositorioAdapter.OnItemClickListener {
     private val usuario by lazy { InicializadorAPIRepo.start() }
     private val adapterRepo = RepositorioAdapter(ArrayList(), this)
-    lateinit var layoutManager:LinearLayoutManager
-    lateinit var binding:ActivityListaBinding
+    lateinit var layoutManager: LinearLayoutManager
+    lateinit var binding: ActivityListaBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
@@ -36,21 +36,17 @@ class ListaDeRepositorioActivity :
         binding.recyclerRepositorio.layoutManager = layoutManager
         binding.recyclerRepositorio.setHasFixedSize(true)
         binding.recyclerRepositorio.adapter = adapterRepo
-
-        binding.recyclerRepositorio.addOnScrollListener(object : EndlessRecyclerViewScrollListener(layoutManager){
+        binding.recyclerRepositorio.addOnScrollListener(object :
+            EndlessRecyclerViewScrollListener(layoutManager) {
             override fun onLoadMore(page: Int, totalItemsCount: Int, view: RecyclerView?) {
-                 getRepo(page)
-
+                getRepo(page)
             }
-
-
-
         })
         getRepo(1)
     }
 
 
-    private fun getRepo(page:Int) {
+    private fun getRepo(page: Int) {
         usuario.getRepo(page).enqueue(object : Callback<ItemRepositorio> {
             override fun onResponse(
                 call: Call<ItemRepositorio>,
@@ -58,8 +54,8 @@ class ListaDeRepositorioActivity :
             ) {
                 if (response.isSuccessful) {
                     response.body()?.let {
-                    Log.i("pagina","esta é a pagina:${page}")
-                       adapterRepo.listaRepositorio.addAll(it.items)
+                        Log.i("pagina", "esta é a pagina:${page}")
+                        adapterRepo.listaRepositorio.addAll(it.items)
                         adapterRepo.notifyDataSetChanged()
                     }
                 }
@@ -76,7 +72,7 @@ class ListaDeRepositorioActivity :
         val intencao = Intent(this, PullRequestsActivity::class.java)
         intencao.putExtra(Constants.OWNER, adapterRepo.listaRepositorio[position].owner.login)
         intencao.putExtra(Constants.REPOSITORIO, adapterRepo.listaRepositorio[position].nome_repo)
-            startActivity(intencao)
+        startActivity(intencao)
 
     }
 
