@@ -12,7 +12,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.DesafioKotlin">
-        <activity android:name=".activity.ListaDeRepositorioActivity" android:launchMode="singleTop">
+        <activity android:name=".activity.ListaDeRepositorioActivity" android:launchMode="singleTop"
+            android:screenOrientation="sensor"
+            android:configChanges="orientation|keyboardHidden|screenSize">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -20,7 +23,9 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".activity.PullRequestsActivity" />
+        <activity android:name=".activity.PullRequestsActivity"
+            android:screenOrientation="sensor"
+            android:configChanges="orientation|keyboardHidden|screenSize"/>
     </application>
 
 </manifest>
