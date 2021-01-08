@@ -18,20 +18,23 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/toolBar"
         android:orientation="vertical">
-<!--        <TextView-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:text="oieeeee"-->
-<!--            android:textSize="32sp"-->
-<!--            android:background="@color/black"-->
-<!--            android:textColor="@color/white"-->
-<!--            android:padding="16dp"/>-->
-
-        <androidx.recyclerview.widget.RecyclerView
+         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recycler_pull_request"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="4dp"
             tools:listitem="@layout/item_pull_request" />
+        <TextView
+            android:id="@+id/warning_not_pull"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:visibility="gone"
+            android:textSize="48sp"
+            android:text="Não há pull request neste repositorio" />
+
+
+
     </LinearLayout>
+
 </com.google.android.material.circularreveal.CircularRevealRelativeLayout>

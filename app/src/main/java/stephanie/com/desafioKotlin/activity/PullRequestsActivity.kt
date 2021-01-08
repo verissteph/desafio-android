@@ -5,6 +5,7 @@ import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import android.view.MenuItem
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -40,6 +41,7 @@ class PullRequestsActivity : AppCompatActivity(), PullRequestAdapter.OnItemClick
         setSupportActionBar(findViewById(R.id.toolBar))
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.title = repositorio
+
     }
 
     fun getPulls(
@@ -56,13 +58,16 @@ class PullRequestsActivity : AppCompatActivity(), PullRequestAdapter.OnItemClick
             ) {
                 if (response.isSuccessful) {
                     response.body()?.let {
-                        recyclerPullRequest.adapter =
-                            PullRequestAdapter(
-                                it as MutableList<PullRequest>,
-                                this@PullRequestsActivity
-                            )
-                        listaPull.addAll(it)
-                    }
+
+
+                     adapterPull.listaPullRequest.addAll(it)
+//                        val warning = findViewById<View>(R.id.warning_not_pull)
+//                        if(adapterPull.itemCount == 0){
+//                            warning.visibility = View.GONE
+//                        }else{
+//                            warning.visibility = View.VISIBLE
+//                        }
+                     adapterPull.notifyDataSetChanged()                    }
                 }
             }
 
