@@ -13,9 +13,9 @@ import stephanie.com.desafioKotlin.R
 import stephanie.com.desafioKotlin.Utils.Constants
 import stephanie.com.desafioKotlin.Utils.EndlessRecyclerViewScrollListener
 import stephanie.com.desafioKotlin.adapter.RepositorioAdapter
+import stephanie.com.desafioKotlin.databinding.ActivityListaBinding
 import stephanie.com.desafioKotlin.modelo.*
 import stephanie.com.desafioKotlin.webService.InicializadorAPIRepo
-const val QDE_ITEMS = 20
 
 
 class ListaDeRepositorioActivity :
@@ -23,20 +23,21 @@ class ListaDeRepositorioActivity :
     RepositorioAdapter.OnItemClickListener {
     private val usuario by lazy { InicializadorAPIRepo.start() }
     private val adapterRepo = RepositorioAdapter(ArrayList(), this)
-    lateinit var recyclerRepositorio: RecyclerView
+   // lateinit var recyclerRepositorio: RecyclerView
     lateinit var layoutManager:LinearLayoutManager
+    lateinit var binding:ActivityListaBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_lista)
-        recyclerRepositorio = findViewById(R.id.recycler_repositorio)
+        binding = ActivityListaBinding.inflate(layoutInflater)
+        setContentView(binding.root)
         layoutManager = LinearLayoutManager(this)
-        recyclerRepositorio.layoutManager = layoutManager
-        recyclerRepositorio.setHasFixedSize(true)
-        recyclerRepositorio.adapter = adapterRepo
+        binding.recyclerRepositorio.layoutManager = layoutManager
+        binding.recyclerRepositorio.setHasFixedSize(true)
+        binding.recyclerRepositorio.adapter = adapterRepo
 
-        recyclerRepositorio.addOnScrollListener(object : EndlessRecyclerViewScrollListener(layoutManager){
+        binding.recyclerRepositorio.addOnScrollListener(object : EndlessRecyclerViewScrollListener(layoutManager){
             override fun onLoadMore(page: Int, totalItemsCount: Int, view: RecyclerView?) {
                  getRepo(page)
             }

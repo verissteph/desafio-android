@@ -1,40 +1,46 @@
 package stephanie.com.desafioKotlin.adapter
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.squareup.picasso.Picasso
-import stephanie.com.desafioKotlin.R
+import stephanie.com.desafioKotlin.databinding.ItemRepoBinding
 import stephanie.com.desafioKotlin.modelo.Repositorio
 
 
 class RepositorioAdapter(
     val listaRepositorio: MutableList<Repositorio>,
     val listener: OnItemClickListener
-) : RecyclerView.Adapter<RepositorioAdapter.ItemViewHolder>() {
 
+) : RecyclerView.Adapter<RepositorioAdapter.RepositorioViewHolder>() {
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemViewHolder {
-        val itemView =
-            LayoutInflater.from(parent.context).inflate(R.layout.item_repo, parent, false)
-        return ItemViewHolder(itemView)
+    inner class RepositorioViewHolder(val repoBinding: ItemRepoBinding) :
+        RecyclerView.ViewHolder(repoBinding.root) {
+
+        fun binding(repositorio: Repositorio) {
+            repoBinding.nomeRepositorio.text = repositorio.nome_repo
+            repoBinding.descricaoRepositorio.text = repositorio.descricao_repo
+            repoBinding.qdeForksRepositorio.text = repositorio.forks_count_repo
+            repoBinding.qdeStarsRepositorio.text = repositorio.stargazers_count_repo
+
+            repoBinding.usernameRepositorio.text = repositorio.owner.login
+            repoBinding.fullnameRepositorio.text = repositorio.full_name_repo
+            Picasso.get().load(repositorio.owner.avatar_url).into(repoBinding.fotoRepositorio);
+
+        }
 
     }
-    override fun onBindViewHolder(holder: ItemViewHolder, position: Int) {
 
-        val lista = listaRepositorio[position]
-        holder.nomeRepositorio.text = lista.nome_repo
-        holder.descricaoRepositorio.text = lista.descricao_repo
-        holder.qdForksFepositorio.text = lista.forks_count_repo
-        holder.qdeStarsRepositorios.text = lista.stargazers_count_repo
-        holder.usernameRepositorio.text = lista.owner.login
-        holder.fullnameRepositorio.text = lista.full_name_repo
-        Picasso.get().load(lista.owner.avatar_url).into(holder.fotoRepositorio);
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RepositorioViewHolder {
+//
+        return RepositorioViewHolder(ItemRepoBinding.inflate(LayoutInflater.from(parent.context),parent,false))
 
-        holder.itemView.setOnClickListener{
+    }
+
+    override fun onBindViewHolder(holder: RepositorioViewHolder, position: Int) {
+       holder.binding(this.listaRepositorio[position])
+
+        holder.repoBinding.cardRepo.setOnClickListener{
             listener.onItemClick(position)
         }
 
@@ -42,23 +48,11 @@ class RepositorioAdapter(
 
     override fun getItemCount() = listaRepositorio.size
 
-    inner class ItemViewHolder(itemView: View) :
-        RecyclerView.ViewHolder(itemView) {
-        val nomeRepositorio: TextView = itemView.findViewById(R.id.nome_repositorio)
-        val descricaoRepositorio: TextView = itemView.findViewById(R.id.descricao_repositorio)
-        val qdForksFepositorio: TextView = itemView.findViewById(R.id.qde_forks_repositorio)
-        val qdeStarsRepositorios: TextView = itemView.findViewById(R.id.qde_stars_repositorio)
-        val fotoRepositorio: ImageView = itemView.findViewById(R.id.foto_repositorio)
-        val usernameRepositorio: TextView = itemView.findViewById(R.id.username_repositorio)
-        val fullnameRepositorio: TextView = itemView.findViewById(R.id.fullname_repositorio)
-
-    }
 
     interface OnItemClickListener {
         fun onItemClick(position: Int)
 
-             }
-
+    }
 
 
 }
