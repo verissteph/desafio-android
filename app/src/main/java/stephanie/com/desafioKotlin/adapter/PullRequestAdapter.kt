@@ -9,49 +9,49 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.squareup.picasso.Picasso
 import stephanie.com.desafioKotlin.R
+import stephanie.com.desafioKotlin.databinding.ItemPullRequestBinding
 import stephanie.com.desafioKotlin.modelo.PullRequest
 
 class PullRequestAdapter(
     val listaPullRequest: MutableList<PullRequest>,
     val listener: OnItemClickListener,
-) : RecyclerView.Adapter<PullRequestAdapter.ItemViewHolder>() {
+) : RecyclerView.Adapter<PullRequestAdapter.PullViewHolder>() {
 
+    inner class PullViewHolder(val pullBinding: ItemPullRequestBinding) :
+        RecyclerView.ViewHolder(pullBinding.root) {
+        fun binding(pullRequest: PullRequest) {
+            pullBinding.pullRequestDate.text = pullRequest.criacao_pull
+            pullBinding.pullRequestDescricao.text = pullRequest.corpo_pull
+            pullBinding.pullRequestName.text = pullRequest.user.nome_pull
+            pullBinding.pullRequestTitle.text = pullRequest.titulo_pull
+            Picasso.get().load(pullRequest.user.foto_pull).into(pullBinding.fotoUsuarioPullRequest)
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemViewHolder {
-        val itemView =
-            LayoutInflater.from(parent.context).inflate(R.layout.item_pull_request, parent, false)
-        return ItemViewHolder(itemView)
+        }
     }
 
 
-    override fun onBindViewHolder(holder: ItemViewHolder, position: Int) {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PullViewHolder {
+//
+        return PullViewHolder(
+            ItemPullRequestBinding.inflate(
+                LayoutInflater.from(parent.context),
+                parent,
+                false
+            )
+        )
+
+    }
 
 
-        val nomeLista = listaPullRequest[position]
-
-            holder.pullRequestTitulo.text = nomeLista.titulo_pull
-            holder.pullRequestDescricao.text = nomeLista.corpo_pull
-            holder.pullRequestNome.text = nomeLista.user.nome_pull
-            holder.pullRequestDate.text = nomeLista.criacao_pull
-            Picasso.get().load(nomeLista.user.foto_pull).into(holder.fotoUsuarioPullRequest)
-
-            holder.itemView.setOnClickListener {
-                listener.OnItemClick(position)
-            }
+    override fun onBindViewHolder(holder: PullViewHolder, position: Int) {
+            holder.binding(this.listaPullRequest[position])
+        holder.pullBinding.cardPull.setOnClickListener{
+            listener.OnItemClick(position)
+        }
     }
 
     override fun getItemCount(): Int = listaPullRequest.size
 
-    class ItemViewHolder(itemView: View) :
-        RecyclerView.ViewHolder(itemView) {
-        val pullRequestTitulo: TextView = itemView.findViewById(R.id.pull_request_title)
-        val pullRequestDescricao: TextView = itemView.findViewById(R.id.pull_request_descricao)
-        val fotoUsuarioPullRequest: ImageView =
-            itemView.findViewById(R.id.foto_usuario_pull_request)
-        val pullRequestNome: TextView = itemView.findViewById(R.id.pull_request_name)
-        val pullRequestDate: TextView = itemView.findViewById(R.id.pull_request_date)
-
-    }
 
     interface OnItemClickListener {
         fun OnItemClick(position: Int)

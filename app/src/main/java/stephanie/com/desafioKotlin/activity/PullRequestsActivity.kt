@@ -15,6 +15,7 @@ import retrofit2.Response
 import stephanie.com.desafioKotlin.R
 import stephanie.com.desafioKotlin.Utils.Constants
 import stephanie.com.desafioKotlin.adapter.PullRequestAdapter
+import stephanie.com.desafioKotlin.databinding.ActivityPullRequestsBinding
 import stephanie.com.desafioKotlin.modelo.PullRequest
 import stephanie.com.desafioKotlin.webService.InicializadorAPIPull
 
@@ -24,14 +25,15 @@ class PullRequestsActivity : AppCompatActivity(), PullRequestAdapter.OnItemClick
     private val adapterPull = PullRequestAdapter(listaPull, this)
     var owner = ""
     var repositorio = ""
-    lateinit var recyclerPullRequest: RecyclerView
+    //lateinit var recyclerPullRequest: RecyclerView
+    lateinit var binding:ActivityPullRequestsBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_pull_requests)
-        recyclerPullRequest = findViewById(R.id.recycler_pull_request)
-        recyclerPullRequest.layoutManager = LinearLayoutManager(this)
-        recyclerPullRequest.setHasFixedSize(true)
-        recyclerPullRequest.adapter = adapterPull
+        binding = ActivityPullRequestsBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+        binding.recyclerPullRequest.layoutManager = LinearLayoutManager(this)
+        binding.recyclerPullRequest.setHasFixedSize(true)
+        binding.recyclerPullRequest.adapter = adapterPull
 
         //pegando dados da outra activity e recuperando
         owner = intent.getStringExtra(Constants.OWNER).toString()
