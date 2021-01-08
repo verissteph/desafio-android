@@ -30,7 +30,7 @@ class RepositorioAdapter(
         holder.descricaoRepositorio.text = lista.descricao_repo
         holder.qdForksFepositorio.text = lista.forks_count_repo
         holder.qdeStarsRepositorios.text = lista.stargazers_count_repo
-        holder.usernameRepositorio.text = lista.username_repo
+        holder.usernameRepositorio.text = lista.owner.login
         holder.fullnameRepositorio.text = lista.full_name_repo
         Picasso.get().load(lista.owner.avatar_url).into(holder.fotoRepositorio);
 
