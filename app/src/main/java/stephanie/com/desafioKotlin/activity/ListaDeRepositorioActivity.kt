@@ -23,10 +23,8 @@ class ListaDeRepositorioActivity :
     RepositorioAdapter.OnItemClickListener {
     private val usuario by lazy { InicializadorAPIRepo.start() }
     private val adapterRepo = RepositorioAdapter(ArrayList(), this)
-    private var isLoading: Boolean = false
     lateinit var recyclerRepositorio: RecyclerView
     lateinit var layoutManager:LinearLayoutManager
-    private var pageNumber=1
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
@@ -40,34 +38,27 @@ class ListaDeRepositorioActivity :
 
         recyclerRepositorio.addOnScrollListener(object : EndlessRecyclerViewScrollListener(layoutManager){
             override fun onLoadMore(page: Int, totalItemsCount: Int, view: RecyclerView?) {
-                 page.inc()
-                loadNextDataFromApi(page);
+                 getRepo(page)
             }
 
 
 
         })
-        getRepo()
+        getRepo(1)
     }
 
-    private fun loadNextDataFromApi(page: Int) {
-    //aq tem q ter logica
-    }
 
-    private fun getRepo() {
-        usuario.getRepo(pageNumber).enqueue(object : Callback<ItemRepositorio> {
+    private fun getRepo(page:Int) {
+        usuario.getRepo(page).enqueue(object : Callback<ItemRepositorio> {
             override fun onResponse(
                 call: Call<ItemRepositorio>,
                 response: Response<ItemRepositorio>
             ) {
                 if (response.isSuccessful) {
                     response.body()?.let {
-                        recyclerRepositorio.adapter =
-                            RepositorioAdapter(
-                                it.items as MutableList<Repositorio>,
-                                this@ListaDeRepositorioActivity
-                            )
-                        adapterRepo.listaRepositorio.addAll(it.items)
+                    Log.i("pagina","esta é a pagina:${page}")
+                       adapterRepo.listaRepositorio.addAll(it.items)
+                        adapterRepo.notifyDataSetChanged()
                     }
                 }
             }
@@ -87,12 +78,5 @@ class ListaDeRepositorioActivity :
 
     }
 
-    override fun onThreesHoldReached() {
-        pageNumber++
-        adapterRepo.listaRepositorio.addAll(adapterRepo.listaRepositorio)
-        adapterRepo.notifyDataSetChanged()
-        getRepo()
-
-    }
 
 }

@@ -1,16 +1,13 @@
 package stephanie.com.desafioKotlin.adapter
 
-import android.content.ClipData
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.squareup.picasso.Picasso
 import stephanie.com.desafioKotlin.R
-import stephanie.com.desafioKotlin.activity.QDE_ITEMS
 import stephanie.com.desafioKotlin.modelo.Repositorio
 
 
@@ -37,8 +34,6 @@ class RepositorioAdapter(
         holder.fullnameRepositorio.text = lista.full_name_repo
         Picasso.get().load(lista.owner.avatar_url).into(holder.fotoRepositorio);
 
-        if (position >= QDE_ITEMS) listener.onThreesHoldReached()
-
         holder.itemView.setOnClickListener{
             listener.onItemClick(position)
         }
@@ -62,8 +57,7 @@ class RepositorioAdapter(
     interface OnItemClickListener {
         fun onItemClick(position: Int)
 
-         fun onThreesHoldReached()
-    }
+             }
 
 
 
