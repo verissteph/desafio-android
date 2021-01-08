@@ -25,7 +25,6 @@ class PullRequestsActivity : AppCompatActivity(), PullRequestAdapter.OnItemClick
     private val adapterPull = PullRequestAdapter(listaPull, this)
     var owner = ""
     var repositorio = ""
-    //lateinit var recyclerPullRequest: RecyclerView
     lateinit var binding:ActivityPullRequestsBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

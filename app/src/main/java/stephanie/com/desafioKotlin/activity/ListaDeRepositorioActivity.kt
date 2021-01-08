@@ -3,6 +3,7 @@ package stephanie.com.desafioKotlin.activity
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -23,7 +24,6 @@ class ListaDeRepositorioActivity :
     RepositorioAdapter.OnItemClickListener {
     private val usuario by lazy { InicializadorAPIRepo.start() }
     private val adapterRepo = RepositorioAdapter(ArrayList(), this)
-   // lateinit var recyclerRepositorio: RecyclerView
     lateinit var layoutManager:LinearLayoutManager
     lateinit var binding:ActivityListaBinding
 
@@ -40,6 +40,7 @@ class ListaDeRepositorioActivity :
         binding.recyclerRepositorio.addOnScrollListener(object : EndlessRecyclerViewScrollListener(layoutManager){
             override fun onLoadMore(page: Int, totalItemsCount: Int, view: RecyclerView?) {
                  getRepo(page)
+
             }
 
 
