@@ -1,5 +1,6 @@
 package stephanie.com.desafioKotlin.activity
 
+// OPtimize imports do Android Studio
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -18,9 +19,11 @@ import stephanie.com.desafioKotlin.databinding.ActivityListaBinding
 import stephanie.com.desafioKotlin.modelo.*
 import stephanie.com.desafioKotlin.webService.InicializadorAPIRepo
 
+// Avaliar uso feature by package
 
 class ListaDeRepositorioActivity :
     AppCompatActivity(),
+    // Remover o OnItemClickListener e implementar o clique separado, passando a implementaçào para o adapter
     RepositorioAdapter.OnItemClickListener {
     private val usuario by lazy { InicializadorAPIRepo.start() }
     private val adapterRepo = RepositorioAdapter(ArrayList(), this)
@@ -32,8 +35,9 @@ class ListaDeRepositorioActivity :
         super.onCreate(savedInstanceState)
         binding = ActivityListaBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        // Considerar remover ou declarar variáveis apenas no escopo que é utilizado
         layoutManager = LinearLayoutManager(this)
-        binding.recyclerRepositorio.layoutManager = layoutManager
+        binding.recyclerRepositorio.layoutManager = LinearLayoutManager(this)
         binding.recyclerRepositorio.setHasFixedSize(true)
         binding.recyclerRepositorio.adapter = adapterRepo
         binding.recyclerRepositorio.addOnScrollListener(object :
@@ -45,7 +49,7 @@ class ListaDeRepositorioActivity :
         getRepo(1)
     }
 
-
+    // Incluir cenário de erro para o usuário
     private fun getRepo(page: Int) {
         usuario.getRepo(page).enqueue(object : Callback<ItemRepositorio> {
             override fun onResponse(
@@ -58,6 +62,8 @@ class ListaDeRepositorioActivity :
                         adapterRepo.listaRepositorio.addAll(it.items)
                         adapterRepo.notifyDataSetChanged()
                     }
+                }else{
+                    // O que acontece se o Github retornar erro?
                 }
             }
 

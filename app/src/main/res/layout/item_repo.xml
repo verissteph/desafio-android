@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/card_repo"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -28,7 +29,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
-                android:text="NOME REPOSITORIO"
+                tools:text="NOME REPOSITORIO"
                 android:textColor="#3981BC"
                 android:textSize="24dp" />
 
@@ -93,7 +94,7 @@
                 android:layout_marginStart="30dp"
                 android:layout_marginTop="16dp"
                 android:layout_toEndOf="@+id/descricao_repositorio"
-                android:src="@drawable/ic_usuario"
+                tools:src="@tools:sample/avatars"
                 app:shapeAppearanceOverlay="@style/circleImageViewStyle" />
 
             <TextView
@@ -104,7 +105,7 @@
                 android:layout_marginTop="5dp"
                 android:layout_marginEnd="0dp"
                 android:gravity="end"
-                android:text="username"
+                tools:text="@tools:sample/full_names"
                 android:textColor="#3981BC"
                 android:textSize="16sp" />
 

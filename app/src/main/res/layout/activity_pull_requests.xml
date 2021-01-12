@@ -24,6 +24,9 @@
             android:layout_height="wrap_content"
             android:padding="4dp"
             tools:listitem="@layout/item_pull_request" />
+
+<!--   Colocar textos no strings.xml     -->
+
         <TextView
             android:id="@+id/warning_not_pull"
             android:layout_width="match_parent"

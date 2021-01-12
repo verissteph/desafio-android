@@ -16,7 +16,8 @@
         app:title="GitHub JavaPop"
         app:titleTextColor="#FFFFFF" />
 
-    <LinearLayout
+
+    <!--  Fazer stack da View usando FrameLayout ou ConstraintLayout  -->    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/toolBar"

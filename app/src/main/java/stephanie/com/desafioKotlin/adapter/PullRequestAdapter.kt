@@ -17,7 +17,8 @@ class PullRequestAdapter(
     val listener: OnItemClickListener,
 ) : RecyclerView.Adapter<PullRequestAdapter.PullViewHolder>() {
 
-    inner class PullViewHolder(val pullBinding: ItemPullRequestBinding) :
+    // Não utilizar inner class para ViewHolders, podem causar leaks de memória
+    class PullViewHolder(val pullBinding: ItemPullRequestBinding) :
         RecyclerView.ViewHolder(pullBinding.root) {
         fun binding(pullRequest: PullRequest) {
             pullBinding.pullRequestDate.text = pullRequest.criacao_pull
@@ -45,6 +46,7 @@ class PullRequestAdapter(
 
     override fun onBindViewHolder(holder: PullViewHolder, position: Int) {
         holder.binding(this.listaPullRequest[position])
+        // Poderia passar o próprio objeto no onItemClick
         holder.pullBinding.cardPull.setOnClickListener {
             listener.OnItemClick(position)
         }
@@ -54,6 +56,7 @@ class PullRequestAdapter(
 
 
     interface OnItemClickListener {
+        // Que tal passar o próprio objeto ao clicar
         fun OnItemClick(position: Int)
     }
 }

@@ -1,0 +1,2 @@
+Refatorar para MVVM
+Mover a regra de negócio da Activity para a ViewModel
