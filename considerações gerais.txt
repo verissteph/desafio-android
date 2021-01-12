@@ -1,2 +1,4 @@
 Refatorar para MVVM
 Mover a regra de negócio da Activity para a ViewModel
+Formatar e fazer uma limpeza no código
+Atualiza gitignore
