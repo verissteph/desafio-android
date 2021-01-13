@@ -55,7 +55,7 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
                 android:contentDescription="@string/icone_do_fork_github"
-                app:srcCompat="@drawable/ic_png_transparent_github_computer_icons_branching_github_branch_fork_git_thumbnail" />
+                app:srcCompat="@drawable/ic_branch_github" />
 
             <TextView
                 android:id="@+id/qde_forks_repositorio"
