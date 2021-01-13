@@ -17,7 +17,8 @@
         app:titleTextColor="#FFFFFF" />
 
 
-    <!--  Fazer stack da View usando FrameLayout ou ConstraintLayout  -->    <LinearLayout
+    <!--  Fazer stack da View usando FrameLayout ou ConstraintLayout  -->
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/toolBar"
@@ -29,16 +30,19 @@
             android:layout_height="wrap_content"
             android:padding="4dp"
             tools:listitem="@layout/item_repo" />
-
         <ProgressBar
+            android:visibility="gone"
             android:id="@+id/progressBar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:indeterminate="true"
             android:paddingLeft="8dp"
-            android:paddingRight="8dp" />
+            android:paddingRight="8dp"
+            />
 
 
-    </LinearLayout>
+
+
+    </FrameLayout>
 </com.google.android.material.circularreveal.CircularRevealRelativeLayout>

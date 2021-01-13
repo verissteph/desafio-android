@@ -61,9 +61,11 @@ class ListaDeRepositorioActivity :
                         Log.i("pagina", "esta é a pagina:${page}")
                         adapterRepo.listaRepositorio.addAll(it.items)
                         adapterRepo.notifyDataSetChanged()
+                        load()
                     }
                 }else{
                     // O que acontece se o Github retornar erro?
+                    Log.i("erro","outro tipo de erro")
                 }
             }
 
@@ -72,6 +74,11 @@ class ListaDeRepositorioActivity :
             }
 
         })
+    }
+
+    private fun load() {
+        binding.progressBar.visibility = View.GONE
+        binding.recyclerRepositorio.visibility = View.VISIBLE
     }
 
     override fun onItemClick(position: Int) {
