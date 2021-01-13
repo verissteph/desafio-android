@@ -4,18 +4,19 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
 
-<!-- Verificar warnings da tag application -->
-<!-- Formatar arquivo -->
     <application
         android:allowBackup="true"
+        android:fullBackupContent="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.DesafioKotlin">
-        <activity android:name=".activity.ListaDeRepositorioActivity" android:launchMode="singleTop"
-            android:screenOrientation="sensor"
-            android:configChanges="orientation|keyboardHidden|screenSize">
+        <activity
+            android:name=".activity.ListaDeRepositorioActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:launchMode="singleTop"
+            android:screenOrientation="sensor">
 
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -24,9 +25,10 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".activity.PullRequestsActivity"
-            android:screenOrientation="sensor"
-            android:configChanges="orientation|keyboardHidden|screenSize"/>
+        <activity
+            android:name=".activity.PullRequestsActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:screenOrientation="sensor" />
     </application>
 
 </manifest>
