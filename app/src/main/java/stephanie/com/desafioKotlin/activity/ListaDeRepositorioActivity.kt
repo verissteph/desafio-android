@@ -8,6 +8,7 @@ import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import kotlinx.coroutines.delay
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -27,7 +28,7 @@ class ListaDeRepositorioActivity :
     private val usuario by lazy { InicializadorAPIRepo.start() }
     private val adapterRepo = RepositorioAdapter(ArrayList(), this)
 
-     lateinit var layoutManager: LinearLayoutManager
+    lateinit var layoutManager: LinearLayoutManager
     lateinit var binding: ActivityListaBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -36,20 +37,24 @@ class ListaDeRepositorioActivity :
         binding = ActivityListaBinding.inflate(layoutInflater)
         setContentView(binding.root)
         // Considerar remover ou declarar variáveis apenas no escopo que é utilizado
-         layoutManager = LinearLayoutManager(this)
-       // binding.recyclerRepositorio.layoutManager = LinearLayoutManager(this)
+        layoutManager = LinearLayoutManager(this)
+        // binding.recyclerRepositorio.layoutManager = LinearLayoutManager(this)
         binding.recyclerRepositorio.layoutManager = layoutManager
         binding.recyclerRepositorio.setHasFixedSize(true)
         binding.recyclerRepositorio.adapter = adapterRepo
         binding.recyclerRepositorio.addOnScrollListener(object :
             EndlessRecyclerViewScrollListener(layoutManager) {
+
             override fun onLoadMore(page: Int, totalItemsCount: Int, view: RecyclerView?) {
                 getRepo(page)
-                loading()
-
+                load(true)
             }
         })
+
         getRepo(1)
+
+
+
 
     }
 
@@ -82,8 +87,9 @@ class ListaDeRepositorioActivity :
         })
     }
 
-    private fun loading() {
-        binding.progressBar.visibility = View.GONE
+    private fun load(l: Boolean) {
+        if (l) binding.progressBar.visibility =
+            View.VISIBLE else binding.progressBar.visibility = View.GONE
     }
 
     override fun onItemClick(position: Int) {
