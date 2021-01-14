@@ -11,7 +11,6 @@ import androidx.recyclerview.widget.RecyclerView
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import stephanie.com.desafioKotlin.R
 import stephanie.com.desafioKotlin.Utils.Constants
 import stephanie.com.desafioKotlin.Utils.EndlessRecyclerViewScrollListener
 import stephanie.com.desafioKotlin.adapter.RepositorioAdapter
@@ -27,7 +26,8 @@ class ListaDeRepositorioActivity :
     RepositorioAdapter.OnItemClickListener {
     private val usuario by lazy { InicializadorAPIRepo.start() }
     private val adapterRepo = RepositorioAdapter(ArrayList(), this)
-    lateinit var layoutManager: LinearLayoutManager
+
+     lateinit var layoutManager: LinearLayoutManager
     lateinit var binding: ActivityListaBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -36,17 +36,21 @@ class ListaDeRepositorioActivity :
         binding = ActivityListaBinding.inflate(layoutInflater)
         setContentView(binding.root)
         // Considerar remover ou declarar variáveis apenas no escopo que é utilizado
-        layoutManager = LinearLayoutManager(this)
-        binding.recyclerRepositorio.layoutManager = LinearLayoutManager(this)
+         layoutManager = LinearLayoutManager(this)
+       // binding.recyclerRepositorio.layoutManager = LinearLayoutManager(this)
+        binding.recyclerRepositorio.layoutManager = layoutManager
         binding.recyclerRepositorio.setHasFixedSize(true)
         binding.recyclerRepositorio.adapter = adapterRepo
         binding.recyclerRepositorio.addOnScrollListener(object :
             EndlessRecyclerViewScrollListener(layoutManager) {
             override fun onLoadMore(page: Int, totalItemsCount: Int, view: RecyclerView?) {
                 getRepo(page)
+                loading()
+
             }
         })
         getRepo(1)
+
     }
 
     // Incluir cenário de erro para o usuário
@@ -61,11 +65,13 @@ class ListaDeRepositorioActivity :
                         Log.i("pagina", "esta é a pagina:${page}")
                         adapterRepo.listaRepositorio.addAll(it.items)
                         adapterRepo.notifyDataSetChanged()
-                        load()
+
                     }
-                }else{
                     // O que acontece se o Github retornar erro?
-                    Log.i("erro","outro tipo de erro")
+
+                    response.errorBody()?.let {
+                        response.message()
+                    }
                 }
             }
 
@@ -76,9 +82,8 @@ class ListaDeRepositorioActivity :
         })
     }
 
-    private fun load() {
+    private fun loading() {
         binding.progressBar.visibility = View.GONE
-        binding.recyclerRepositorio.visibility = View.VISIBLE
     }
 
     override fun onItemClick(position: Int) {

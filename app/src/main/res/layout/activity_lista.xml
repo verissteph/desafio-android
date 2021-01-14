@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.google.android.material.circularreveal.CircularRevealRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activity.ListaDeRepositorioActivity">
+    tools:context=".activity.ListaDeRepositorioActivity"
+    android:orientation="vertical">
 
     <com.google.android.material.appbar.MaterialToolbar
         android:id="@+id/toolBar"
@@ -20,16 +21,18 @@
     <!--  Fazer stack da View usando FrameLayout ou ConstraintLayout  -->
     <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/toolBar"
-        android:orientation="vertical">
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recycler_repositorio"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="4dp"
-            tools:listitem="@layout/item_repo" />
+            tools:listitem="@layout/item_repo"
+           />
+
         <ProgressBar
             android:visibility="gone"
             android:id="@+id/progressBar"
@@ -43,6 +46,5 @@
 
 
 
-
     </FrameLayout>
-</com.google.android.material.circularreveal.CircularRevealRelativeLayout>
+</LinearLayout>

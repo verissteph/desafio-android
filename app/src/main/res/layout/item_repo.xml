@@ -31,7 +31,7 @@
                 android:layout_marginTop="16dp"
                 tools:text="NOME REPOSITORIO"
                 android:textColor="#3981BC"
-                android:textSize="24dp" />
+                android:textSize="24sp" />
 
             <TextView
                 android:id="@+id/descricao_repositorio"
@@ -41,7 +41,7 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="1dp"
                 android:maxLines="3"
-                android:text="Descricao repositorio Mussum Ipsum,
+                tools:text="Descricao repositorio Mussum Ipsum,
                  cacilds vidis litro abertis. In elementis mé pra quem é
                  amistosis quis leo. Leite de capivaris, leite de mula
                  manquis sem cabeça. Delegadis gente finis, bibendum egestas
@@ -75,7 +75,8 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
                 android:layout_toEndOf="@+id/qde_forks_repositorio"
-                app:srcCompat="@drawable/ic_baseline_star_24" />
+                app:srcCompat="@drawable/ic_baseline_star_24"
+                android:contentDescription="estrela de favorito" />
 
             <TextView
                 android:id="@+id/qde_stars_repositorio"
