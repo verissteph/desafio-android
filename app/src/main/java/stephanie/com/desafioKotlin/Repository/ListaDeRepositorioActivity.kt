@@ -17,7 +17,6 @@ import stephanie.com.desafioKotlin.PullRequest.PullRequestsActivity
 import stephanie.com.desafioKotlin.databinding.ActivityListaBinding
 import stephanie.com.desafioKotlin.webService.InicializadorAPIRepo
 
-// Avaliar uso feature by package
 
 class ListaDeRepositorioActivity :
     AppCompatActivity(),
@@ -51,7 +50,6 @@ class ListaDeRepositorioActivity :
 
     }
 
-    // Incluir cenário de erro para o usuário
     private fun getRepo(page: Int) {
         binding.progressBar.visibility = View.VISIBLE
         usuario.getRepo(page).enqueue(object : Callback<ItemRepositorio> {
@@ -65,11 +63,10 @@ class ListaDeRepositorioActivity :
                         adapterRepo.listaRepositorio.addAll(it.items)
                         adapterRepo.notifyDataSetChanged()
                         binding.progressBar.visibility = View.GONE
+
                     }
-                    // O que acontece se o Github retornar erro?
                     response.errorBody()?.let {
                         response.message()
-
                     }
                 }
             }
@@ -80,7 +77,6 @@ class ListaDeRepositorioActivity :
 
         })
     }
-
 
 
     override fun onItemClick(position: Int) {
