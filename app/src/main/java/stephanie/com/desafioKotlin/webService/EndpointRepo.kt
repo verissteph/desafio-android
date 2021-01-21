@@ -1,7 +1,6 @@
 package stephanie.com.desafioKotlin.webService
 
 import retrofit2.Call
-import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Query
 import stephanie.com.desafioKotlin.modelo.ItemRepositorio

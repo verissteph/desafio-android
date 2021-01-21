@@ -1,11 +1,11 @@
-package stephanie.com.desafioKotlin.adapter
+package stephanie.com.desafioKotlin.Repository
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.squareup.picasso.Picasso
-import stephanie.com.desafioKotlin.databinding.ItemRepoBinding
 import stephanie.com.desafioKotlin.modelo.Repositorio
+import stephanie.com.desafioKotlin.databinding.ItemRepoBinding
 
 
 class RepositorioAdapter(
@@ -18,14 +18,14 @@ class RepositorioAdapter(
         RecyclerView.ViewHolder(repoBinding.root) {
 
         fun binding(repositorio: Repositorio) {
-            repoBinding.nomeRepositorio.text = repositorio.nome_repo
-            repoBinding.descricaoRepositorio.text = repositorio.descricao_repo
-            repoBinding.qdeForksRepositorio.text = repositorio.forks_count_repo
-            repoBinding.qdeStarsRepositorio.text = repositorio.stargazers_count_repo
+            repoBinding.nomeRepositorio.text = repositorio.nomeRepo
+            repoBinding.descricaoRepositorio.text = repositorio.descricaoRepo
+            repoBinding.qdeForksRepositorio.text = repositorio.forksCountRepo
+            repoBinding.qdeStarsRepositorio.text = repositorio.stargazersCountRepo
 
             repoBinding.usernameRepositorio.text = repositorio.owner.login
-            repoBinding.fullnameRepositorio.text = repositorio.full_name_repo
-            Picasso.get().load(repositorio.owner.avatar_url).into(repoBinding.fotoRepositorio);
+            repoBinding.fullnameRepositorio.text = repositorio.fullNameRepo
+            Picasso.get().load(repositorio.owner.avatarUrl).into(repoBinding.fotoRepositorio);
 
         }
 
