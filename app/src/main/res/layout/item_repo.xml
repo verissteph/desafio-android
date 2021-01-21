@@ -65,7 +65,7 @@
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="16dp"
                 android:layout_toEndOf="@+id/fork_repositorio"
-                android:text="600" />
+                android:text="@string/_600" />
 
             <ImageView
                 android:id="@+id/stars_repositorio"
@@ -76,7 +76,7 @@
                 android:layout_marginTop="16dp"
                 android:layout_toEndOf="@+id/qde_forks_repositorio"
                 app:srcCompat="@drawable/ic_baseline_star_24"
-                android:contentDescription="estrela de favorito" />
+                android:contentDescription="@string/estrela_de_favorito" />
 
             <TextView
                 android:id="@+id/qde_stars_repositorio"
@@ -86,7 +86,7 @@
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="16dp"
                 android:layout_toEndOf="@+id/stars_repositorio"
-                android:text="200" />
+                android:text="@string/_200" />
 
             <com.google.android.material.imageview.ShapeableImageView
                 android:id="@+id/foto_repositorio"
@@ -117,7 +117,7 @@
                 android:layout_below="@+id/username_repositorio"
                 android:layout_marginTop="5dp"
                 android:gravity="end"
-                android:text="Nome completo" />
+                tools:text="@string/nome_completo" />
 
 
         </RelativeLayout>

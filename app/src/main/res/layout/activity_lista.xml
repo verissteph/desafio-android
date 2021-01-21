@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activity.ListaDeRepositorioActivity"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    tools:context=".Repository.ListaDeRepositorioActivity">
 
     <com.google.android.material.appbar.MaterialToolbar
         android:id="@+id/toolBar"
@@ -30,11 +30,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="4dp"
-            tools:listitem="@layout/item_repo"
-           />
+            tools:listitem="@layout/item_repo" />
 
         <ProgressBar
-            android:visibility="gone"
             android:id="@+id/progressBar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -42,8 +40,7 @@
             android:indeterminate="true"
             android:paddingLeft="8dp"
             android:paddingRight="8dp"
-            />
-
+            android:visibility="gone" />
 
 
     </FrameLayout>

@@ -1,4 +1,13 @@
 <resources>
     <string name="app_name">GitHub Java OP</string>
     <string name="icone_do_fork_github">icone do fork github</string>
+    <string name="_600">600</string>
+    <string name="estrela_de_favorito">estrela de favorito</string>
+    <string name="_200">200</string>
+    <string name="nome_completo">Nome completo</string>
+    <string name="n_o_h_pull_request_neste_repositorio">Não há pull request neste repositorio</string>
+    <string name="testando">TESTANDO</string>
+    <string name="descri_o_pull_request">Descrição pull request</string>
+    <string name="nome_completo_pull">Nome Completo</string>
+    <string name="date">XXX/XX/XX</string>
 </resources>
