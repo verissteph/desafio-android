@@ -13,7 +13,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.DesafioKotlin">
         <activity
-            android:name=".activity.ListaDeRepositorioActivity"
+            android:name=".Repository.ListaDeRepositorioActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:launchMode="singleTop"
             android:screenOrientation="sensor">
@@ -26,7 +26,7 @@
         </activity>
 
         <activity
-            android:name=".activity.PullRequestsActivity"
+            android:name=".PullRequest.PullRequestsActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:screenOrientation="sensor" />
     </application>
