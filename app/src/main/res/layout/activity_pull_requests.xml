@@ -18,24 +18,23 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/toolBar"
         android:orientation="vertical">
-         <androidx.recyclerview.widget.RecyclerView
+
+        <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recycler_pull_request"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="4dp"
             tools:listitem="@layout/item_pull_request" />
 
-<!--   Colocar textos no strings.xml     -->
 
         <TextView
             android:id="@+id/warning_not_pull"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_vertical"
-            android:visibility="gone"
+            android:text="@string/n_o_h_pull_request_neste_repositorio"
             android:textSize="48sp"
-            android:text="@string/n_o_h_pull_request_neste_repositorio" />
-
+            android:visibility="gone" />
 
 
     </LinearLayout>
