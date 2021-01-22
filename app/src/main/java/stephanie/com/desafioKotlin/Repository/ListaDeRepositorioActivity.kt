@@ -15,14 +15,14 @@ import stephanie.com.desafioKotlin.Utils.Constants
 import stephanie.com.desafioKotlin.Utils.EndlessRecyclerViewScrollListener
 import stephanie.com.desafioKotlin.PullRequest.PullRequestsActivity
 import stephanie.com.desafioKotlin.databinding.ActivityListaBinding
-import stephanie.com.desafioKotlin.webService.InicializadorAPIRepo
+import stephanie.com.desafioKotlin.webService.InicializadorAPI
 
 
 class ListaDeRepositorioActivity :
     AppCompatActivity(),
     // Remover o OnItemClickListener e implementar o clique separado, passando a implementaçào para o adapter
     RepositorioAdapter.OnItemClickListener {
-    private val usuario by lazy { InicializadorAPIRepo.start() }
+    private val usuario by lazy { InicializadorAPI.start() }
     private val adapterRepo = RepositorioAdapter(ArrayList(), this)
 
     lateinit var binding: ActivityListaBinding

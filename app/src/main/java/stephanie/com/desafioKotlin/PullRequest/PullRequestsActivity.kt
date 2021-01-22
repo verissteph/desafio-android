@@ -14,7 +14,7 @@ import stephanie.com.desafioKotlin.R
 import stephanie.com.desafioKotlin.Utils.Constants
 import stephanie.com.desafioKotlin.databinding.ActivityPullRequestsBinding
 import stephanie.com.desafioKotlin.modelo.PullRequest
-import stephanie.com.desafioKotlin.webService.InicializadorAPIPull
+import stephanie.com.desafioKotlin.webService.InicializadorAPI
 
 
 class PullRequestsActivity : AppCompatActivity(), PullRequestAdapter.OnItemClickListener {
@@ -46,7 +46,7 @@ class PullRequestsActivity : AppCompatActivity(), PullRequestAdapter.OnItemClick
         owner: String,
         repositorio: String,
     ) {
-        val api = InicializadorAPIPull.startPull()
+        val api = InicializadorAPI.start()
         val chamada = api.getPulls(owner, repositorio)
         chamada.enqueue(object : Callback<List<PullRequest>> {
 
