@@ -14,25 +14,22 @@ class RepositorioAdapter(
 
 ) : RecyclerView.Adapter<RepositorioAdapter.RepositorioViewHolder>() {
 
-    inner class RepositorioViewHolder(val repoBinding: ItemRepoBinding) :
+    class RepositorioViewHolder(val repoBinding: ItemRepoBinding) :
         RecyclerView.ViewHolder(repoBinding.root) {
+
 
         fun binding(repositorio: Repositorio) {
             repoBinding.nomeRepositorio.text = repositorio.nomeRepo
             repoBinding.descricaoRepositorio.text = repositorio.descricaoRepo
             repoBinding.qdeForksRepositorio.text = repositorio.forksCountRepo
             repoBinding.qdeStarsRepositorio.text = repositorio.stargazersCountRepo
-
             repoBinding.usernameRepositorio.text = repositorio.owner.login
             repoBinding.fullnameRepositorio.text = repositorio.fullNameRepo
             Picasso.get().load(repositorio.owner.avatarUrl).into(repoBinding.fotoRepositorio);
-
         }
-
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RepositorioViewHolder {
-//
         return RepositorioViewHolder(
             ItemRepoBinding.inflate(
                 LayoutInflater.from(parent.context),
@@ -40,16 +37,13 @@ class RepositorioAdapter(
                 false
             )
         )
-
     }
 
     override fun onBindViewHolder(holder: RepositorioViewHolder, position: Int) {
         holder.binding(this.listaRepositorio[position])
-
         holder.repoBinding.cardRepo.setOnClickListener {
             listener.onItemClick(position)
         }
-
     }
 
     override fun getItemCount() = listaRepositorio.size

@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import retrofit2.Call
@@ -20,8 +21,9 @@ import stephanie.com.desafioKotlin.webService.InicializadorAPI
 
 class ListaDeRepositorioActivity :
     AppCompatActivity(),
-    // Remover o OnItemClickListener e implementar o clique separado, passando a implementaçào para o adapter
+// Remover o OnItemClickListener e implementar o clique separado, passando a implementaçào para o adapter
     RepositorioAdapter.OnItemClickListener {
+
     private val usuario by lazy { InicializadorAPI.start() }
     private val adapterRepo = RepositorioAdapter(ArrayList(), this)
 
@@ -33,18 +35,19 @@ class ListaDeRepositorioActivity :
         binding = ActivityListaBinding.inflate(layoutInflater)
         setContentView(binding.root)
         val layoutManager = LinearLayoutManager(this)
-        binding.recyclerRepositorio.layoutManager = layoutManager
-        binding.recyclerRepositorio.setHasFixedSize(true)
-        binding.recyclerRepositorio.adapter = adapterRepo
-        binding.recyclerRepositorio.addOnScrollListener(object :
-            EndlessRecyclerViewScrollListener(layoutManager) {
+        binding.apply {
+            recyclerRepositorio.layoutManager = layoutManager
+            recyclerRepositorio.setHasFixedSize(true)
+            recyclerRepositorio.adapter = adapterRepo
+            recyclerRepositorio.addOnScrollListener(object :
+                EndlessRecyclerViewScrollListener(layoutManager) {
 
-            override fun onLoadMore(page: Int, totalItemsCount: Int, view: RecyclerView?) {
-                getRepo(page)
+                override fun onLoadMore(page: Int, totalItemsCount: Int, view: RecyclerView?) {
+                    getRepo(page)
 
-            }
-        })
-
+                }
+            })
+        }
         getRepo(1)
 
 
@@ -80,9 +83,10 @@ class ListaDeRepositorioActivity :
 
 
     override fun onItemClick(position: Int) {
-        val intencao = Intent(this, PullRequestsActivity::class.java)
-        intencao.putExtra(Constants.OWNER, adapterRepo.listaRepositorio[position].owner.login)
-        intencao.putExtra(Constants.REPOSITORIO, adapterRepo.listaRepositorio[position].nomeRepo)
+        val intencao = Intent(this, PullRequestsActivity::class.java).apply {
+            putExtra(Constants.OWNER, adapterRepo.listaRepositorio[position].owner.login)
+            putExtra(Constants.REPOSITORIO, adapterRepo.listaRepositorio[position].nomeRepo)
+        }
         startActivity(intencao)
 
     }

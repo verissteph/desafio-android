@@ -35,6 +35,16 @@
             android:text="@string/n_o_h_pull_request_neste_repositorio"
             android:textSize="48sp"
             android:visibility="gone" />
+        <ProgressBar
+            android:id="@+id/progressBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|center"
+            android:indeterminate="true"
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp"
+            android:visibility="gone" />
+
 
 
     </LinearLayout>
