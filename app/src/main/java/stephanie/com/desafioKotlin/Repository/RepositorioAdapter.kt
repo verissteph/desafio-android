@@ -19,12 +19,14 @@ class RepositorioAdapter(
 
 
         fun binding(repositorio: Repositorio) {
-            repoBinding.nomeRepositorio.text = repositorio.nomeRepo
-            repoBinding.descricaoRepositorio.text = repositorio.descricaoRepo
-            repoBinding.qdeForksRepositorio.text = repositorio.forksCountRepo
-            repoBinding.qdeStarsRepositorio.text = repositorio.stargazersCountRepo
-            repoBinding.usernameRepositorio.text = repositorio.owner.login
-            repoBinding.fullnameRepositorio.text = repositorio.fullNameRepo
+            repoBinding.apply {
+                nomeRepositorio.text = repositorio.nomeRepo
+                descricaoRepositorio.text = repositorio.descricaoRepo
+                qdeForksRepositorio.text = repositorio.forksCountRepo
+                qdeStarsRepositorio.text = repositorio.stargazersCountRepo
+                usernameRepositorio.text = repositorio.owner.login
+                fullnameRepositorio.text = repositorio.fullNameRepo
+            }
             Picasso.get().load(repositorio.owner.avatarUrl).into(repoBinding.fotoRepositorio);
         }
     }
