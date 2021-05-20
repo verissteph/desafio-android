@@ -12,23 +12,8 @@ class RepositorioAdapter(
     val listaRepositorio: MutableList<Repositorio>,
     val listener: OnItemClickListener
 
-) : RecyclerView.Adapter<RepositorioAdapter.RepositorioViewHolder>() {
+) : RecyclerView.Adapter<RepositorioViewHolder>() {
 
-    class RepositorioViewHolder(val repoBinding: ItemRepoBinding) :
-        RecyclerView.ViewHolder(repoBinding.root) {
-
-        fun binding(repositorio: Repositorio) {
-            repoBinding.apply {
-                nomeRepositorio.text = repositorio.nomeRepo
-                descricaoRepositorio.text = repositorio.descricaoRepo
-                qdeForksRepositorio.text = repositorio.forksCountRepo
-                qdeStarsRepositorio.text = repositorio.stargazersCountRepo
-                usernameRepositorio.text = repositorio.owner.login
-                fullnameRepositorio.text = repositorio.fullNameRepo
-            }
-            Picasso.get().load(repositorio.owner.avatarUrl).into(repoBinding.fotoRepositorio);
-        }
-    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RepositorioViewHolder {
         return RepositorioViewHolder(
