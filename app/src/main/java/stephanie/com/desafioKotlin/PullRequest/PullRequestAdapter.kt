@@ -10,24 +10,10 @@ import stephanie.com.desafioKotlin.modelo.PullRequest
 class PullRequestAdapter(
     val listaPullRequest: MutableList<PullRequest>,
     val listener: OnItemClickListener,
-) : RecyclerView.Adapter<PullRequestAdapter.PullViewHolder>() {
-
-    // Não utilizar inner class para ViewHolders, podem causar leaks de memória
-    class PullViewHolder(val pullBinding: ItemPullRequestBinding) :
-        RecyclerView.ViewHolder(pullBinding.root) {
-        fun binding(pullRequest: PullRequest) {
-            pullBinding.pullRequestDate.text = pullRequest.criacaoPull
-            pullBinding.pullRequestDescricao.text = pullRequest.corpoPull
-            pullBinding.pullRequestName.text = pullRequest.user.nomePull
-            pullBinding.pullRequestTitle.text = pullRequest.tituloPull
-            Picasso.get().load(pullRequest.user.fotoPull).into(pullBinding.fotoUsuarioPullRequest)
-
-        }
-    }
+) : RecyclerView.Adapter<PullViewHolder>() {
 
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PullViewHolder {
-//
+ override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PullViewHolder {
         return PullViewHolder(
             ItemPullRequestBinding.inflate(
                 LayoutInflater.from(parent.context),
