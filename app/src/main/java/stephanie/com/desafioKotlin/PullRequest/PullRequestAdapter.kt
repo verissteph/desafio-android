@@ -1,14 +1,9 @@
-package stephanie.com.desafioKotlin.adapter
+package stephanie.com.desafioKotlin.PullRequest
 
-import android.text.format.DateFormat
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.squareup.picasso.Picasso
-import stephanie.com.desafioKotlin.R
 import stephanie.com.desafioKotlin.databinding.ItemPullRequestBinding
 import stephanie.com.desafioKotlin.modelo.PullRequest
 
@@ -17,14 +12,15 @@ class PullRequestAdapter(
     val listener: OnItemClickListener,
 ) : RecyclerView.Adapter<PullRequestAdapter.PullViewHolder>() {
 
-    inner class PullViewHolder(val pullBinding: ItemPullRequestBinding) :
+    // Não utilizar inner class para ViewHolders, podem causar leaks de memória
+    class PullViewHolder(val pullBinding: ItemPullRequestBinding) :
         RecyclerView.ViewHolder(pullBinding.root) {
         fun binding(pullRequest: PullRequest) {
-            pullBinding.pullRequestDate.text = pullRequest.criacao_pull
-            pullBinding.pullRequestDescricao.text = pullRequest.corpo_pull
-            pullBinding.pullRequestName.text = pullRequest.user.nome_pull
-            pullBinding.pullRequestTitle.text = pullRequest.titulo_pull
-            Picasso.get().load(pullRequest.user.foto_pull).into(pullBinding.fotoUsuarioPullRequest)
+            pullBinding.pullRequestDate.text = pullRequest.criacaoPull
+            pullBinding.pullRequestDescricao.text = pullRequest.corpoPull
+            pullBinding.pullRequestName.text = pullRequest.user.nomePull
+            pullBinding.pullRequestTitle.text = pullRequest.tituloPull
+            Picasso.get().load(pullRequest.user.fotoPull).into(pullBinding.fotoUsuarioPullRequest)
 
         }
     }
@@ -45,6 +41,7 @@ class PullRequestAdapter(
 
     override fun onBindViewHolder(holder: PullViewHolder, position: Int) {
         holder.binding(this.listaPullRequest[position])
+        // Poderia passar o próprio objeto no onItemClick
         holder.pullBinding.cardPull.setOnClickListener {
             listener.OnItemClick(position)
         }
@@ -54,6 +51,7 @@ class PullRequestAdapter(
 
 
     interface OnItemClickListener {
+        // Que tal passar o próprio objeto ao clicar
         fun OnItemClick(position: Int)
     }
 }

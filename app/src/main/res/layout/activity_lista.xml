@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.google.android.material.circularreveal.CircularRevealRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activity.ListaDeRepositorioActivity">
+    android:orientation="vertical"
+    tools:context=".Repository.ListaDeRepositorioActivity">
 
     <com.google.android.material.appbar.MaterialToolbar
         android:id="@+id/toolBar"
@@ -16,11 +17,12 @@
         app:title="GitHub JavaPop"
         app:titleTextColor="#FFFFFF" />
 
-    <LinearLayout
+
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/toolBar"
-        android:orientation="vertical">
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recycler_repositorio"
@@ -33,11 +35,12 @@
             android:id="@+id/progressBar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
+            android:layout_gravity="bottom|center"
             android:indeterminate="true"
             android:paddingLeft="8dp"
-            android:paddingRight="8dp" />
+            android:paddingRight="8dp"
+            android:visibility="gone" />
 
 
-    </LinearLayout>
-</com.google.android.material.circularreveal.CircularRevealRelativeLayout>
+    </FrameLayout>
+</LinearLayout>

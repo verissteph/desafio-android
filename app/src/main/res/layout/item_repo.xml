@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/card_repo"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -28,9 +29,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
-                android:text="NOME REPOSITORIO"
+                tools:text="NOME REPOSITORIO"
                 android:textColor="#3981BC"
-                android:textSize="24dp" />
+                android:textSize="24sp" />
 
             <TextView
                 android:id="@+id/descricao_repositorio"
@@ -40,7 +41,7 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="1dp"
                 android:maxLines="3"
-                android:text="Descricao repositorio Mussum Ipsum,
+                tools:text="Descricao repositorio Mussum Ipsum,
                  cacilds vidis litro abertis. In elementis mé pra quem é
                  amistosis quis leo. Leite de capivaris, leite de mula
                  manquis sem cabeça. Delegadis gente finis, bibendum egestas
@@ -54,7 +55,7 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
                 android:contentDescription="@string/icone_do_fork_github"
-                app:srcCompat="@drawable/ic_png_transparent_github_computer_icons_branching_github_branch_fork_git_thumbnail" />
+                app:srcCompat="@drawable/ic_branch_github" />
 
             <TextView
                 android:id="@+id/qde_forks_repositorio"
@@ -64,7 +65,7 @@
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="16dp"
                 android:layout_toEndOf="@+id/fork_repositorio"
-                android:text="600" />
+                android:text="@string/_600" />
 
             <ImageView
                 android:id="@+id/stars_repositorio"
@@ -74,7 +75,8 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
                 android:layout_toEndOf="@+id/qde_forks_repositorio"
-                app:srcCompat="@drawable/ic_baseline_star_24" />
+                app:srcCompat="@drawable/ic_baseline_star_24"
+                android:contentDescription="@string/estrela_de_favorito" />
 
             <TextView
                 android:id="@+id/qde_stars_repositorio"
@@ -84,7 +86,7 @@
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="16dp"
                 android:layout_toEndOf="@+id/stars_repositorio"
-                android:text="200" />
+                android:text="@string/_200" />
 
             <com.google.android.material.imageview.ShapeableImageView
                 android:id="@+id/foto_repositorio"
@@ -93,7 +95,7 @@
                 android:layout_marginStart="30dp"
                 android:layout_marginTop="16dp"
                 android:layout_toEndOf="@+id/descricao_repositorio"
-                android:src="@drawable/ic_usuario"
+                tools:src="@tools:sample/avatars"
                 app:shapeAppearanceOverlay="@style/circleImageViewStyle" />
 
             <TextView
@@ -104,7 +106,7 @@
                 android:layout_marginTop="5dp"
                 android:layout_marginEnd="0dp"
                 android:gravity="end"
-                android:text="username"
+                tools:text="@tools:sample/full_names"
                 android:textColor="#3981BC"
                 android:textSize="16sp" />
 
@@ -115,7 +117,7 @@
                 android:layout_below="@+id/username_repositorio"
                 android:layout_marginTop="5dp"
                 android:gravity="end"
-                android:text="Nome completo" />
+                tools:text="@string/nome_completo" />
 
 
         </RelativeLayout>

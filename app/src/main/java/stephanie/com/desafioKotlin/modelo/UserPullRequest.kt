@@ -4,9 +4,9 @@ import com.google.gson.annotations.SerializedName
 
 data class UserPullRequest(
     @SerializedName("login")
-    val nome_pull: String,
+    val nomePull: String,
     @SerializedName("avatar_url")
-    val foto_pull: String,
+    val fotoPull: String,
     @SerializedName("html_url")
-    val url_pull: String,
+    val urlPull: String,
 )
