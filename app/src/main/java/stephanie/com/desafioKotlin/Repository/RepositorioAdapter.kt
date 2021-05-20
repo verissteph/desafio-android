@@ -17,7 +17,6 @@ class RepositorioAdapter(
     class RepositorioViewHolder(val repoBinding: ItemRepoBinding) :
         RecyclerView.ViewHolder(repoBinding.root) {
 
-
         fun binding(repositorio: Repositorio) {
             repoBinding.apply {
                 nomeRepositorio.text = repositorio.nomeRepo
