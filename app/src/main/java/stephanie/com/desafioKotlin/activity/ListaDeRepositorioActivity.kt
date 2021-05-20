@@ -3,26 +3,24 @@ package stephanie.com.desafioKotlin.activity
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
-import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import stephanie.com.desafioKotlin.R
 import stephanie.com.desafioKotlin.Utils.Constants
 import stephanie.com.desafioKotlin.Utils.EndlessRecyclerViewScrollListener
 import stephanie.com.desafioKotlin.adapter.RepositorioAdapter
 import stephanie.com.desafioKotlin.databinding.ActivityListaBinding
 import stephanie.com.desafioKotlin.modelo.*
-import stephanie.com.desafioKotlin.webService.InicializadorAPIRepo
+import stephanie.com.desafioKotlin.webService.Inicializador
 
 
 class ListaDeRepositorioActivity :
     AppCompatActivity(),
     RepositorioAdapter.OnItemClickListener {
-    private val usuario by lazy { InicializadorAPIRepo.start() }
+    private val usuario by lazy { Inicializador.start() }
     private val adapterRepo = RepositorioAdapter(ArrayList(), this)
     lateinit var layoutManager: LinearLayoutManager
     lateinit var binding: ActivityListaBinding

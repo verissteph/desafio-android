@@ -5,10 +5,8 @@ import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import android.view.MenuItem
-import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -17,7 +15,7 @@ import stephanie.com.desafioKotlin.Utils.Constants
 import stephanie.com.desafioKotlin.adapter.PullRequestAdapter
 import stephanie.com.desafioKotlin.databinding.ActivityPullRequestsBinding
 import stephanie.com.desafioKotlin.modelo.PullRequest
-import stephanie.com.desafioKotlin.webService.InicializadorAPIPull
+import stephanie.com.desafioKotlin.webService.Inicializador
 
 
 class PullRequestsActivity : AppCompatActivity(), PullRequestAdapter.OnItemClickListener {
@@ -49,7 +47,7 @@ class PullRequestsActivity : AppCompatActivity(), PullRequestAdapter.OnItemClick
         owner: String,
         repositorio: String,
     ) {
-        val api = InicializadorAPIPull.startPull()
+        val api = Inicializador.start()
         val chamada = api.getPulls(owner, repositorio)
         chamada.enqueue(object : Callback<List<PullRequest>> {
 
