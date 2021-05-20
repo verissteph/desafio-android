@@ -8,11 +8,9 @@ import stephanie.com.desafioKotlin.modelo.ItemRepositorio
 import stephanie.com.desafioKotlin.modelo.PullRequest
 
 interface Endpoint {
+
     @GET("search/repositories?q=language:Java&sort=stars")
     fun getRepo(@Query("page") page: Int): Call<ItemRepositorio>
-
-
-
 
     @GET("repos/{owner}/{repositorio}/pulls")
 
