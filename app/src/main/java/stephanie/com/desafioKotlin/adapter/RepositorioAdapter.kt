@@ -25,7 +25,7 @@ class RepositorioAdapter(
 
             repoBinding.usernameRepositorio.text = repositorio.owner.login
             repoBinding.fullnameRepositorio.text = repositorio.full_name_repo
-            Picasso.get().load(repositorio.owner.avatar_url).into(repoBinding.fotoRepositorio);
+            Picasso.get().load(repositorio.owner.avatarUrl).into(repoBinding.fotoRepositorio);
 
         }
 
