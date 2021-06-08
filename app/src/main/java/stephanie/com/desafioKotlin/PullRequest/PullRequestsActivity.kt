@@ -8,6 +8,7 @@ import android.view.MenuItem
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import retrofit2.Call
 import retrofit2.Callback
@@ -25,6 +26,7 @@ class PullRequestsActivity : AppCompatActivity(), PullRequestAdapter.OnItemClick
     var owner = ""
     var repositorio = ""
     lateinit var binding: ActivityPullRequestsBinding
+    lateinit var viewModel: PullRequestViewModel
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -37,6 +39,8 @@ class PullRequestsActivity : AppCompatActivity(), PullRequestAdapter.OnItemClick
             recyclerPullRequest.setHasFixedSize(true)
             recyclerPullRequest.adapter = adapterPull
         }
+
+        viewModel = ViewModelProvider(this).get(PullRequestViewModel::class.java)
 
         //pegando dados da outra activity e recuperando
         owner = intent.getStringExtra(Constants.OWNER).toString()
@@ -58,10 +62,7 @@ class PullRequestsActivity : AppCompatActivity(), PullRequestAdapter.OnItemClick
     ) {
 
         val api = Inicializador.start()
-
         binding.progressBar.visibility = View.VISIBLE
-
-
         val chamada = api.getPulls(owner, repositorio)
         chamada.enqueue(object : Callback<List<PullRequest>> {
 

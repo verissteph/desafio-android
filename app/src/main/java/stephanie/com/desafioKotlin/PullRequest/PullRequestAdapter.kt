@@ -3,18 +3,17 @@ package stephanie.com.desafioKotlin.PullRequest
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.squareup.picasso.Picasso
 import stephanie.com.desafioKotlin.databinding.ItemPullRequestBinding
 import stephanie.com.desafioKotlin.modelo.PullRequest
 
 class PullRequestAdapter(
     val listaPullRequest: MutableList<PullRequest>,
     val listener: OnItemClickListener,
-) : RecyclerView.Adapter<PullViewHolder>() {
+) : RecyclerView.Adapter<PullRequestViewHolder>() {
 
 
- override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PullViewHolder {
-        return PullViewHolder(
+ override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PullRequestViewHolder {
+        return PullRequestViewHolder(
             ItemPullRequestBinding.inflate(
                 LayoutInflater.from(parent.context),
                 parent,
@@ -25,7 +24,7 @@ class PullRequestAdapter(
     }
 
 
-    override fun onBindViewHolder(holder: PullViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: PullRequestViewHolder, position: Int) {
         holder.binding(this.listaPullRequest[position])
         // Poderia passar o próprio objeto no onItemClick
         holder.pullBinding.cardPull.setOnClickListener {

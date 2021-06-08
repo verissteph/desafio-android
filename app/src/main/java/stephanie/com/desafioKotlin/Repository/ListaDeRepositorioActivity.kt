@@ -40,6 +40,7 @@ class ListaDeRepositorioActivity :
             recyclerRepositorio.layoutManager = layoutManager
             recyclerRepositorio.setHasFixedSize(true)
             recyclerRepositorio.adapter = adapterRepo
+
             recyclerRepositorio.addOnScrollListener(object :
                 EndlessRecyclerViewScrollListener(layoutManager) {
 

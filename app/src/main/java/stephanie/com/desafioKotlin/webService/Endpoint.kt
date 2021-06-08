@@ -13,7 +13,6 @@ interface Endpoint {
     fun getRepo(@Query("page") page: Int): Call<ItemRepositorio>
 
     @GET("repos/{owner}/{repositorio}/pulls")
-
     fun getPulls(
         @Path("owner") owner: String,
         @Path("repositorio") repositorio: String

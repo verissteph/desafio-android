@@ -5,7 +5,7 @@ import com.squareup.picasso.Picasso
 import stephanie.com.desafioKotlin.databinding.ItemPullRequestBinding
 import stephanie.com.desafioKotlin.modelo.PullRequest
 
-class PullViewHolder(val pullBinding: ItemPullRequestBinding) :
+class PullRequestViewHolder(val pullBinding: ItemPullRequestBinding) :
     RecyclerView.ViewHolder(pullBinding.root) {
     fun binding(pullRequest: PullRequest) {
         pullBinding.apply {
