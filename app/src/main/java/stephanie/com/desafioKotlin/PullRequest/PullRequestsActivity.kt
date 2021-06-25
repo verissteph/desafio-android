@@ -3,16 +3,12 @@ package stephanie.com.desafioKotlin.PullRequest
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
-import android.util.Log
 import android.view.MenuItem
 import android.view.View
-import android.widget.Toast
+import androidx.activity.viewModels
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 import stephanie.com.desafioKotlin.R
 import stephanie.com.desafioKotlin.Utils.Constants
 import stephanie.com.desafioKotlin.databinding.ActivityPullRequestsBinding
@@ -26,7 +22,12 @@ class PullRequestsActivity : AppCompatActivity(), PullRequestAdapter.OnItemClick
     var owner = ""
     var repositorio = ""
     lateinit var binding: ActivityPullRequestsBinding
-    lateinit var viewModel: PullRequestViewModel
+    //lateinit var viewModel: PullRequestViewModel
+
+    private val viewModel: PullRequestViewModel by viewModels {
+        PullViewModelFactory(Inicializador.start())
+    }
+
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -40,57 +41,89 @@ class PullRequestsActivity : AppCompatActivity(), PullRequestAdapter.OnItemClick
             recyclerPullRequest.adapter = adapterPull
         }
 
-        viewModel = ViewModelProvider(this).get(PullRequestViewModel::class.java)
+    //    viewModel = ViewModelProvider(this).get(PullRequestViewModel::class.java)
+
 
         //pegando dados da outra activity e recuperando
         owner = intent.getStringExtra(Constants.OWNER).toString()
         repositorio = intent.getStringExtra(Constants.REPOSITORIO).toString()
-        getPulls(owner, repositorio)
+//        getPulls(owner, repositorio)
+         viewModel.get(owner,repositorio)
 
         setSupportActionBar(findViewById(R.id.toolBar))
         supportActionBar?.apply {
             setDisplayHomeAsUpEnabled(true)
             title = repositorio
         }
-
+        observeViewModel()
     }
-
-
-    fun getPulls(
-        owner: String,
-        repositorio: String,
-    ) {
-
-        val api = Inicializador.start()
-        binding.progressBar.visibility = View.VISIBLE
-        val chamada = api.getPulls(owner, repositorio)
-        chamada.enqueue(object : Callback<List<PullRequest>> {
-
-            override fun onResponse(
-                call: Call<List<PullRequest>>,
-                response: Response<List<PullRequest>>
-            ) {
-                if (response.isSuccessful) {
-                    response.body()?.let {
-                        adapterPull.listaPullRequest.addAll(it)
-                        adapterPull.notifyDataSetChanged()
-                        binding.progressBar.visibility = View.GONE
-                    }
-                } else {
-                    Toast.makeText(
-                        this@PullRequestsActivity,
-                        "Erro na resposta da API",
-                        Toast.LENGTH_SHORT
-                    ).show()
+    private fun observeViewModel(){
+        viewModel.listaPullLiveData.observe(this){
+            when(it){
+                is PullState.Success ->{
+                    adapterPull.adicionaRepositorio(it.list,this)
+                }
+                is PullState.Error ->{
+                    mostraErro(it.msgError)
+                }
+                is PullState.Wait->{
+                    adapterPull.loading(this)
                 }
             }
-
-            override fun onFailure(call: Call<List<PullRequest>>, t: Throwable) {
-                Log.d("Erro de chamada api", t.message.toString())
-            }
-
-        })
+        }
     }
+
+    fun mostraErro(recursoErro:Int){
+        AlertDialog.Builder(this)
+            .setMessage(recursoErro)
+            .show()
+
+    }
+
+    fun loading(){
+        binding.progressBar.visibility = View.VISIBLE
+    }
+
+    fun invisibleLoading(){
+        binding.progressBar.visibility = View.GONE
+    }
+//
+
+//    fun getPulls(
+//        owner: String,
+//        repositorio: String,
+//    ) {
+//
+//        val api = Inicializador.start()
+//        binding.progressBar.visibility = View.VISIBLE
+//        val chamada = api.getPulls(owner, repositorio)
+//        chamada.enqueue(object : Callback<List<PullRequest>> {
+//
+//            override fun onResponse(
+//                call: Call<List<PullRequest>>,
+//                response: Response<List<PullRequest>>
+//            ) {
+//                if (response.isSuccessful) {
+//                    response.body()?.let {
+//                        adapterPull.listaPullRequest.addAll(it)
+//                        adapterPull.notifyDataSetChanged()
+//                        binding.progressBar.visibility = View.GONE
+//                    }
+//                } else {
+//                    Toast.makeText(
+//                        this@PullRequestsActivity,
+//                        "Erro na resposta da API",
+//                        Toast.LENGTH_SHORT
+//                    ).show()
+//                }
+//            }
+//
+//            override fun onFailure(call: Call<List<PullRequest>>, t: Throwable) {
+//                Log.d("Erro de chamada api", t.message.toString())
+//            }
+//
+//        })
+//    }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {

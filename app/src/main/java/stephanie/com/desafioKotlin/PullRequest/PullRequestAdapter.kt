@@ -12,7 +12,7 @@ class PullRequestAdapter(
 ) : RecyclerView.Adapter<PullRequestViewHolder>() {
 
 
- override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PullRequestViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PullRequestViewHolder {
         return PullRequestViewHolder(
             ItemPullRequestBinding.inflate(
                 LayoutInflater.from(parent.context),
@@ -34,6 +34,16 @@ class PullRequestAdapter(
 
     override fun getItemCount(): Int = listaPullRequest.size
 
+    fun adicionaRepositorio(items: List<PullRequest>, activity: PullRequestsActivity) {
+        val contagem = itemCount
+        listaPullRequest.addAll(items)
+        notifyItemRangeInserted(contagem, items.size)
+        activity.invisibleLoading()
+    }
+
+    fun loading(activity: PullRequestsActivity){
+        activity.loading()
+    }
 
     interface OnItemClickListener {
         // Que tal passar o próprio objeto ao clicar
