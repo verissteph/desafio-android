@@ -10,4 +10,6 @@
     <string name="descri_o_pull_request">Descrição pull request</string>
     <string name="nome_completo_pull">Nome Completo</string>
     <string name="date">XXX/XX/XX</string>
+    <string name="erro">"Outro erro "</string>
+    <string name="erro_requi">Erro de requisição</string>
 </resources>
