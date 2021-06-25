@@ -83,7 +83,8 @@ class ListaDeRepositorioActivity :
         })
     }
 
-// Remover o OnItemClickListener e implementar o clique separado, passando a implementaçào para o adapter
+    // Remover o OnItemClickListener e implementar o clique separado,
+// passando a implementaçào para o adapter
     override fun onItemClick(position: Int) {
         val intencao = Intent(this, PullRequestsActivity::class.java).apply {
             putExtra(Constants.OWNER, adapterRepo.listaRepositorio[position].owner.login)
